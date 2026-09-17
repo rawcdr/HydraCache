@@ -109,3 +109,19 @@ This file is a chronological engineering decision log.
 ### Why Alternatives Were Rejected: Redundant code. The `qdrant-client` 1.8.0 API simplifies this via the `.query()` method.
 ### Impact: `DenseRetriever` is concise and directly interoperable with the `apple_10k` collection created in Phase 1.
 ### Phase: Phase 2 (Milestone 2)
+
+## [2026-09-18 00:43]
+### Decision: Hybrid Retrieval with Concurrent Execution and Reciprocal Rank Fusion (RRF).
+### Context: Phase 2 Milestone 3 requires executing both BM25 and Dense retrieval strategies concurrently and fusing the results.
+### Decision Made: 
+- Implemented `HybridRetriever` in `src/retrieval/hybrid.py`.
+- Used `concurrent.futures.ThreadPoolExecutor(max_workers=2)` for parallel execution of retrievers.
+- Added `provenance` and `rrf_score` to the `RetrievalResult` schema to preserve debug traceability.
+- Used an RRF formula of `1 / (k + rank)` with `k=60` and deduplicated by stable `chunk_id`.
+### Why: 
+- `ThreadPoolExecutor` is lightweight and doesn't introduce async complexity to an otherwise synchronous codebase.
+- RRF is mathematically robust and standard in modern hybrid RAGs.
+### Alternatives Considered: `asyncio` for parallel execution.
+### Why Alternatives Were Rejected: The rest of the app is purely synchronous; introducing `asyncio` would unnecessarily infect the call chain and require async adaptations for Qdrant and Pickle endpoints.
+### Impact: Produces the required Top-20 fused candidate pool for cross-encoder reranking.
+### Phase: Phase 2 (Milestone 3)

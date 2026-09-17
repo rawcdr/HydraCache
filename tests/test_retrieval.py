@@ -76,6 +76,72 @@ def test_dense_retrieval_empty_query(MockQdrantClient):
     assert results == []
     mock_client.query.assert_not_called()
 
+# --- RRF and Hybrid Tests ---
+
+def test_rrf_fuse_mathematics():
+    from src.retrieval.fusion import rrf_fuse
+    
+    # 2 dummy lists with 2 overlapping chunks and 1 unique each
+    r1 = RetrievalResult(chunk_id="c1", text="text1", score=1.0, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="list1")
+    r2 = RetrievalResult(chunk_id="c2", text="text2", score=0.9, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="list1")
+    r3 = RetrievalResult(chunk_id="c3", text="text3", score=0.8, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="list1")
+    
+    list_a = [r1, r2, r3]  # c1 is rank 1, c2 is rank 2, c3 is rank 3
+    
+    # list b: c2 is rank 1, c1 is rank 2, c4 is rank 3
+    r1_b = RetrievalResult(chunk_id="c1", text="text1", score=0.8, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="list2")
+    r2_b = RetrievalResult(chunk_id="c2", text="text2", score=0.9, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="list2")
+    r4 = RetrievalResult(chunk_id="c4", text="text4", score=0.99, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="list2")
+    list_b = [r2_b, r1_b, r4]
+    
+    k = 60
+    # Expected scores:
+    # c1 = 1/(60+1) + 1/(60+2) = 1/61 + 1/62 = 0.0163934 + 0.016129 = 0.032522
+    # c2 = 1/(60+2) + 1/(60+1) = 1/62 + 1/61 = 0.032522
+    # c3 = 1/(60+3) = 1/63 = 0.015873
+    # c4 = 1/(60+3) = 1/63 = 0.015873
+    
+    fused = rrf_fuse([list_a, list_b], k=k, top_k=20)
+    
+    assert len(fused) == 4
+    assert set(fused[0].provenance) == {"list1", "list2"}
+    assert set(fused[1].provenance) == {"list1", "list2"}
+    assert fused[0].retrieval_source == "hybrid"
+    
+    # Check descending order by rrf_score
+    assert fused[0].rrf_score >= fused[1].rrf_score
+    assert fused[1].rrf_score >= fused[2].rrf_score
+    assert fused[2].rrf_score >= fused[3].rrf_score
+
+@patch("src.retrieval.dense.DenseRetriever.retrieve")
+@patch("src.retrieval.sparse.SparseRetriever.retrieve")
+def test_hybrid_retrieval_orchestration(mock_sparse, mock_dense):
+    from src.retrieval.hybrid import HybridRetriever
+    
+    r1 = RetrievalResult(chunk_id="c1", text="text1", score=1.0, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="bm25")
+    r2 = RetrievalResult(chunk_id="c2", text="text2", score=0.9, source_file="doc1.pdf", page_number=1, chunk_type="text", retrieval_source="dense")
+    
+    mock_sparse.return_value = [r1]
+    mock_dense.return_value = [r2]
+    
+    # We patch the inner components but we need to mock their initialization
+    # Actually, we can just patch the classes or pass dependencies if we used DI
+    # But since they're hardcoded in __init__, we just mock the retrieve methods of the instances created.
+    with patch("src.retrieval.sparse.SparseRetriever.__init__", return_value=None), \
+         patch("src.retrieval.dense.DenseRetriever.__init__", return_value=None):
+             
+        retriever = HybridRetriever(pool_size=1)
+        # Manually attach mocks because __init__ bypassed
+        retriever.sparse_retriever.retrieve = mock_sparse
+        retriever.dense_retriever.retrieve = mock_dense
+        
+        results = retriever.retrieve_hybrid("test query")
+        
+        assert len(results) == 1  # pool_size is 1
+        assert results[0].chunk_id in ["c1", "c2"]
+        mock_sparse.assert_called_once_with("test query", 20)
+        mock_dense.assert_called_once_with("test query", 20)
+
 # --- Integration Tests ---
 
 def is_qdrant_running():

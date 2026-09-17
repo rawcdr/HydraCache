@@ -72,10 +72,21 @@ scripts/run_indexing.py
 3. Executes `client.query()` to automatically embed the query text and perform a vector search in Qdrant.
 4. Converts Qdrant response payload into `RetrievalResult` objects preserving chunk_id, document text, score, and parent_id.
 
+### Milestone 3: Hybrid Retrieval & Fusion
+1. **HybridRetriever**: `src.retrieval.hybrid.HybridRetriever.retrieve_hybrid()` is called.
+2. It launches `sparse.retrieve()` and `dense.retrieve()` concurrently using a `ThreadPoolExecutor`.
+3. Both lists of `RetrievalResult` objects are collected and fed into fusion.
+4. **Fusion**: `src.retrieval.fusion.rrf_fuse()` iterates over both lists.
+    - Each `chunk_id`'s score is accumulated as `Σ 1 / (60 + rank_i)`.
+    - Tracks provenance (which retriever yielded the chunk).
+5. The merged dictionary is sorted by RRF score descending.
+6. Returns the Top-20 candidate pool.
+
 ### Function Call Chain
 ```text
-scripts/test_dense.py
- -> DenseRetriever.retrieve()
- -> QdrantClient.query()
- -> DenseRetriever.to_retrieval_result()
+scripts/test_hybrid.py
+ -> HybridRetriever.retrieve_hybrid()
+   ├── SparseRetriever.retrieve() [Thread 1]
+   └── DenseRetriever.retrieve() [Thread 2]
+ -> rrf_fuse()
 ```
