@@ -99,3 +99,28 @@ scripts/test_pipeline.py
    │    └── rrf_fuse() -> Top-20
    └── Reranker.rerank() -> Top-5
 ```
+
+### Phase 3: Semantic Caching
+1. User submits a query via `AnswerPipeline.answer()`.
+2. `SemanticCache.lookup()` embeds the query (`bge-small-en-v1.5`) and queries the Redis vector index.
+3. If the nearest cached query has a Cosine distance `< 0.15`, the cache yields a HIT and returns the cached answer instantly.
+4. If MISS, the query falls through to `PipelineRetriever.retrieve()` (Phase 2 flow).
+5. The `generate_answer()` stub produces a final answer.
+6. The answer is cached via `SemanticCache.store()` with a 24-hour TTL.
+
+### Function Call Chain
+```text
+scripts/test_cache.py
+ -> AnswerPipeline.answer(query)
+   ├── SemanticCache.lookup(query)
+   │     └── [If Hit -> Return]
+   │     └── [If Miss -> Continue]
+   ├── PipelineRetriever.retrieve(query)
+   │    ├── HybridRetriever.retrieve_hybrid()
+   │    │    ├── SparseRetriever [Thread 1]
+   │    │    ├── DenseRetriever [Thread 2]
+   │    │    └── rrf_fuse() -> Top-20
+   │    └── Reranker.rerank() -> Top-5
+   ├── generate_answer(query, Top-5 context)
+   └── SemanticCache.store(query, generated_answer)
+```

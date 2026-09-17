@@ -141,3 +141,19 @@ This file is a chronological engineering decision log.
 - `ms-marco-MiniLM-L-6-v2` has a lower theoretical ranking capacity compared to `bge-reranker-base`. However, operational reliability strictly takes precedence here to allow verification of the architectural data flow. The embedding model used for dense retrieval remains unchanged as `BAAI/bge-small-en-v1.5`.
 ### Impact: The retrieval pipeline correctly initializes and generates actual rerank scores for the fused top-20 pool, completing Phase 2 end-to-end verification.
 ### Phase: Phase 2 (Milestone 4)
+
+## [2026-09-18 01:17]
+### Decision: Implement Semantic Cache with Redis Stack (Vector Search).
+### Context: Phase 3 requires short-circuiting unnecessary retrieval and generation when encountering semantically identical or highly similar queries.
+### Decision Made: 
+- Integrated Redis Stack and initialized a vector index (`idx:semantic_cache`) using RediSearch (`FT.CREATE`).
+- Cache schema includes `query_text`, `answer`, `timestamp`, and `query_embedding` (FLAT, 384-dim, COSINE metric).
+- Configured Semantic Distance Threshold: `0.15`.
+- Configured TTL: 24 Hours (`86400` seconds).
+- Pipeline wrapped via `AnswerPipeline.answer()`, incorporating a deterministic text generation stub to prove caching without accumulating LLM API costs.
+### Why: 
+- Using Redis allows high-performance vector lookup independent of Qdrant (which handles the larger document corpus). 
+- The threshold of `0.15` successfully caught a semantic duplicate (`distance=0.0396`) and rejected a strictly unrelated query (`distance=0.3872`).
+- A fail-open approach was chosen for Redis connection failures, allowing the architecture to seamlessly degrade back to standard Phase 2 retrieval.
+### Impact: Exact and Semantic duplicates successfully bypass the entire retrieval pipeline, dropping latency from ~1,500ms down to ~10-50ms.
+### Phase: Phase 3

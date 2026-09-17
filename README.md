@@ -71,7 +71,7 @@ pytest tests/
 - **[x] Phase 0**: Project Foundation & Environment Setup (Implemented)
 - **[x] Phase 1**: Parsing, Chunking, BM25 + Qdrant Indexing (Implemented)
 - **[x] Phase 2**: Hybrid Retrieval + RRF + Cross-Encoder Reranking (Implemented)
-- **[ ] Phase 3**: Semantic Caching (Planned)
+- **[x] Phase 3**: Semantic Caching (Implemented)
 - **[ ] Phase 4**: Evaluation + Benchmarking + Failure Analysis + Streamlit (Planned)
 - **[ ] Phase 5**: Production API + Auth + Rate Limiting + Observability (Planned)
 - **[ ] Phase 6**: Multi-document + Multi-hop Retrieval (Planned)
