@@ -193,6 +193,17 @@ def test_pipeline_orchestration(MockReranker, MockHybrid):
     mock_hybrid_instance.retrieve_hybrid.assert_called_once_with("test query")
     mock_reranker_instance.rerank.assert_called_once_with("test query", [r1], top_k=5)
 
+def test_pipeline_orchestration_fails_when_no_reranker():
+    from src.retrieval.pipeline import PipelineRetriever
+    
+    with patch("src.retrieval.pipeline.Reranker") as MockReranker:
+        MockReranker.side_effect = Exception("Failed to load model")
+        
+        pipeline = PipelineRetriever(top_k=5)
+        
+        with pytest.raises(RuntimeError, match="Reranking failed: Reranker is unavailable."):
+            pipeline.retrieve("test query")
+
 # --- Integration Tests ---
 
 def is_qdrant_running():

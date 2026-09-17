@@ -6,7 +6,7 @@ from src.retrieval.models import RetrievalResult
 logger = logging.getLogger(__name__)
 
 class Reranker:
-    def __init__(self, model_name: str = "BAAI/bge-reranker-base"):
+    def __init__(self, model_name: str = "Xenova/ms-marco-MiniLM-L-6-v2"):
         logger.info(f"Initializing CrossEncoder reranker with model {model_name}")
         self.model = TextCrossEncoder(model_name)
 

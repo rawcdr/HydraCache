@@ -30,5 +30,5 @@ class PipelineRetriever:
             logger.info("Reranking applied successfully.")
             return final_results
         else:
-            logger.warning("Reranker unavailable. Returning top RRF candidates.")
-            return candidates[:self.top_k]
+            logger.error("Reranker unavailable. Cannot fulfill Phase 2 strict requirements.")
+            raise RuntimeError("Reranking failed: Reranker is unavailable.")

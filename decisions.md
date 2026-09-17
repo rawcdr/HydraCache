@@ -126,17 +126,18 @@ This file is a chronological engineering decision log.
 ### Impact: Produces the required Top-20 fused candidate pool for cross-encoder reranking.
 ### Phase: Phase 2 (Milestone 3)
 
-## [2026-09-18 00:54]
-### Decision: Upgrade `fastembed` to `0.8.0` and Use `BAAI/bge-reranker-base`.
-### Context: Phase 2 Milestone 4 requires implementing the Cross-Encoder reranker. The previously installed `fastembed==0.3.4` lacked the `TextCrossEncoder` module.
+## [2026-09-18 01:14]
+### Decision: Use `Xenova/ms-marco-MiniLM-L-6-v2` as the local Cross-Encoder.
+### Context: Phase 2 Milestone 4 requires implementing the Cross-Encoder reranker. The originally planned `BAAI/bge-reranker-base` is a 1.1GB ONNX model, which failed to reliably download via the HuggingFace CDN in this environment due to timeouts.
 ### Decision Made: 
 - Upgraded `fastembed` to `0.8.0`.
-- Used `fastembed.rerank.cross_encoder.TextCrossEncoder` with `BAAI/bge-reranker-base`.
+- Used `fastembed.rerank.cross_encoder.TextCrossEncoder` with the fallback model `Xenova/ms-marco-MiniLM-L-6-v2`.
+- Removed the silent fallback mechanism; if initialization fails, the pipeline now explicitly raises a `RuntimeError` rather than returning an unreranked list.
 - Preserved the existing `RetrievalResult` schema but added a distinct `rerank_score`.
 ### Why: 
-- This enables a fully local ONNX-based cross-encoder without pulling in PyTorch/Sentence-Transformers.
-- Adding a distinct score field rather than overwriting RRF score retains the original provenance.
-### Alternatives Considered: Switching to `sentence-transformers`.
-### Why Alternatives Were Rejected: Bloats the container image and diverges from Phase 0 ONNX principles.
-### Impact: The retrieval pipeline correctly reranks the fused top-20 pool.
+- `Xenova/ms-marco-MiniLM-L-6-v2` is only ~86MB and successfully initializes without HF timeout issues on this bandwidth constrained environment, while remaining fully compatible with the FastEmbed ONNX runtime.
+- Explicitly separating the scores allows verification that real cross-encoder relevance scores were generated, without muddying the provenance of the RRF score.
+### Tradeoffs: 
+- `ms-marco-MiniLM-L-6-v2` has a lower theoretical ranking capacity compared to `bge-reranker-base`. However, operational reliability strictly takes precedence here to allow verification of the architectural data flow. The embedding model used for dense retrieval remains unchanged as `BAAI/bge-small-en-v1.5`.
+### Impact: The retrieval pipeline correctly initializes and generates actual rerank scores for the fused top-20 pool, completing Phase 2 end-to-end verification.
 ### Phase: Phase 2 (Milestone 4)
