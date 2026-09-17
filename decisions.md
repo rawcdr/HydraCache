@@ -76,3 +76,16 @@ This file is a chronological engineering decision log.
 ### Why Alternatives Were Rejected: Not feasible to install heavy system dependencies automatically, and strict pinning guarantees reproducibility as requested.
 ### Impact: Python dependencies successfully installed. Docker setup remains deferred.
 ### Phase: Phase 0
+
+## [2026-09-17 21:30]
+### Decision: Refactor Phase 1 Pipeline for Parent-Child / Sentence-Window chunking and explicit Table Extraction.
+### Context: The initial Phase 1 pipeline used LangChain's basic `PDFPlumberLoader` and `RecursiveCharacterTextSplitter`. An architectural audit revealed this failed to isolate tables, destroyed context, and lacked parent-child linking for advanced RAG retrieval.
+### Decision Made: 
+- Dropped `PDFPlumberLoader` in favor of a custom `pdfplumber` loop that isolates `Table` objects (formatting them as Markdown) and extracts remaining text as `Text`.
+- Replaced character-splitting with a custom Parent-Child sentence-window chunking strategy (3-sentence windows overlapping by 1).
+- Updated Qdrant index to clear existing collections before upserting, to avoid duplicate vector issues during iterative testing, and populated payloads with rich metadata (`parent_id`, `chunk_type`).
+### Why: To satisfy the strict HydraCache specifications for high-precision retrieval while preserving document structure.
+### Alternatives Considered: Using Unstructured's `partition_pdf`.
+### Why Alternatives Were Rejected: Unstructured with `infer_table_structure` requires `tesseract` and `pdf2image`, which carry heavy system dependencies that complicate Windows installations. Custom `pdfplumber` logic is lighter and robust enough.
+### Impact: Chunk counts increased from 363 to 753. Tables are now properly preserved in markdown format. Vectors include contextual payload properties.
+### Phase: Phase 1 (Audit Correction)

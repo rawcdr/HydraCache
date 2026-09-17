@@ -41,3 +41,25 @@ N/A (No data ingestion yet)
 - Created `docker-compose.yml` for Qdrant and Redis.
 - Created `verify_infra.py` script.
 - Created basic tests for infrastructure.
+
+## Phase 1 (Indexing Pipeline)
+
+### Entry Point
+- `scripts/run_indexing.py`
+
+### Execution Flow
+1. **Parser**: Iterates over PDF pages using `pdfplumber`. Extracts tables and converts them to markdown. Extracts remaining text. Emits logical `Document` objects with `chunk_type` metadata.
+2. **Chunker**: 
+    - Tables: Yielded directly as Parent=Child chunks.
+    - Text: Split into sentences, then grouped into sliding windows (size 3, overlap 1) to create Child chunks. Parent text is retained in metadata.
+3. **Dense Indexing**: FastEmbed `bge-small-en-v1.5` embeds the Child chunks. They are upserted into Qdrant (`apple_10k` collection), with payload preserving `parent_id` and `chunk_type`.
+4. **Sparse Indexing**: Tokenizes Child chunks and builds a `BM25Okapi` index, saving it to disk (`data/processed/bm25_index.pkl`).
+
+### Function Call Chain
+```text
+scripts/run_indexing.py
+ -> PDFParser.parse()
+ -> TextChunker.chunk_documents()
+ -> DenseIndexer.index()
+ -> SparseIndexer.index()
+```

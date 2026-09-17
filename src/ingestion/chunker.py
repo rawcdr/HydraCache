@@ -1,31 +1,72 @@
 import logging
+import re
+import uuid
 from typing import List
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
-from src.config import Config
 
 logger = logging.getLogger(__name__)
 
 class TextChunker:
-    def __init__(self, chunk_size: int = Config.CHUNK_SIZE, chunk_overlap: int = Config.CHUNK_OVERLAP):
-        self.chunk_size = chunk_size
-        self.chunk_overlap = chunk_overlap
-        self.splitter = RecursiveCharacterTextSplitter(
-            chunk_size=self.chunk_size,
-            chunk_overlap=self.chunk_overlap,
-            separators=["\n\n", "\n", " ", ""]
-        )
+    def __init__(self, window_size: int = 3, overlap: int = 1):
+        self.window_size = window_size
+        self.overlap = overlap
+
+    def split_into_sentences(self, text: str) -> List[str]:
+        """Regex-based sentence splitter."""
+        # Split on . ! ? followed by space or newline
+        sentences = re.split(r'(?<=[.!?])\s+', text)
+        return [s.strip() for s in sentences if s.strip()]
 
     def chunk_documents(self, documents: List[Document]) -> List[Document]:
         """
-        Takes raw page documents and splits them into smaller semantic chunks.
+        Creates Sentence-Window child chunks linked to Parent chunks.
+        Tables are maintained as single parent=child chunks.
         """
-        logger.info(f"Splitting {len(documents)} documents (chunk_size={self.chunk_size}, overlap={self.chunk_overlap})...")
-        chunks = self.splitter.split_documents(documents)
-        logger.info(f"Generated {len(chunks)} chunks.")
+        logger.info(f"Chunking {len(documents)} documents using Sentence-Window strategy...")
+        child_chunks = []
         
-        # Optionally, inject chunk IDs or structural metadata here
-        for i, chunk in enumerate(chunks):
-            chunk.metadata["chunk_id"] = f"chunk_{i}"
+        for doc in documents:
+            parent_id = str(uuid.uuid4())
+            chunk_type = doc.metadata.get("chunk_type", "unknown")
             
-        return chunks
+            if chunk_type == "table":
+                # Table is its own child and parent
+                child_doc = Document(
+                    page_content=doc.page_content,
+                    metadata={
+                        **doc.metadata,
+                        "chunk_id": str(uuid.uuid4()),
+                        "parent_id": parent_id,
+                        "parent_text": doc.page_content
+                    }
+                )
+                child_chunks.append(child_doc)
+                
+            elif chunk_type == "text":
+                sentences = self.split_into_sentences(doc.page_content)
+                if not sentences:
+                    continue
+                    
+                parent_text = doc.page_content
+                
+                # Sliding window
+                step = max(1, self.window_size - self.overlap)
+                for i in range(0, len(sentences), step):
+                    window = sentences[i:i + self.window_size]
+                    if not window:
+                        continue
+                        
+                    child_text = " ".join(window)
+                    child_doc = Document(
+                        page_content=child_text,
+                        metadata={
+                            **doc.metadata,
+                            "chunk_id": str(uuid.uuid4()),
+                            "parent_id": parent_id,
+                            "parent_text": parent_text
+                        }
+                    )
+                    child_chunks.append(child_doc)
+                    
+        logger.info(f"Generated {len(child_chunks)} child chunks with parent relationships.")
+        return child_chunks
