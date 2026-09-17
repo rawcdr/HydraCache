@@ -52,8 +52,8 @@ if __name__ == "__main__":
     
     print("==================================================")
     if python_ok and qdrant_ok and redis_ok:
-        print("🎉 All systems go! Phase 0 environment is ready.")
+        print("[SUCCESS] All systems go! Phase 0 environment is ready.")
         sys.exit(0)
     else:
-        print("⚠️  Some checks failed. Please review the output above.")
+        print("[FAIL] Some checks failed. Please review the output above.")
         sys.exit(1)
