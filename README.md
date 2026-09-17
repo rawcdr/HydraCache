@@ -69,8 +69,8 @@ pytest tests/
 
 ## Planned Phase Roadmap
 - **[x] Phase 0**: Project Foundation & Environment Setup (Implemented)
-- **[ ] Phase 1**: Parsing, Chunking, BM25 + Qdrant Indexing (Planned)
-- **[ ] Phase 2**: Hybrid Retrieval + RRF + Cross-Encoder Reranking (Planned)
+- **[x] Phase 1**: Parsing, Chunking, BM25 + Qdrant Indexing (Implemented)
+- **[x] Phase 2**: Hybrid Retrieval + RRF + Cross-Encoder Reranking (In Progress - Milestone 2 Complete)
 - **[ ] Phase 3**: Semantic Caching (Planned)
 - **[ ] Phase 4**: Evaluation + Benchmarking + Failure Analysis + Streamlit (Planned)
 - **[ ] Phase 5**: Production API + Auth + Rate Limiting + Observability (Planned)

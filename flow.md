@@ -63,3 +63,19 @@ scripts/run_indexing.py
  -> DenseIndexer.index()
  -> SparseIndexer.index()
 ```
+
+## Phase 2 (Retrieval Pipeline)
+
+### Milestone 2: Dense Retrieval
+1. **DenseRetriever**: `src.retrieval.dense.DenseRetriever.retrieve()` is called with a query and `top_k`.
+2. Uses `QdrantClient` configured with the Phase 1 embedding model (`BAAI/bge-small-en-v1.5`).
+3. Executes `client.query()` to automatically embed the query text and perform a vector search in Qdrant.
+4. Converts Qdrant response payload into `RetrievalResult` objects preserving chunk_id, document text, score, and parent_id.
+
+### Function Call Chain
+```text
+scripts/test_dense.py
+ -> DenseRetriever.retrieve()
+ -> QdrantClient.query()
+ -> DenseRetriever.to_retrieval_result()
+```

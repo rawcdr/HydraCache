@@ -89,3 +89,23 @@ This file is a chronological engineering decision log.
 ### Why Alternatives Were Rejected: Unstructured with `infer_table_structure` requires `tesseract` and `pdf2image`, which carry heavy system dependencies that complicate Windows installations. Custom `pdfplumber` logic is lighter and robust enough.
 ### Impact: Chunk counts increased from 363 to 753. Tables are now properly preserved in markdown format. Vectors include contextual payload properties.
 ### Phase: Phase 1 (Audit Correction)
+
+## [2026-09-17 23:48]
+### Decision: Upgrade `fastembed` to 0.3.4 for Reranking support.
+### Context: Phase 2 requires a local Cross-Encoder reranker. The previously pinned `fastembed==0.2.5` only supported dense embeddings.
+### Decision Made: Upgraded to `fastembed==0.3.4` in `requirements.txt`.
+### Why: To use the native `TextCrossEncoder` provided by FastEmbed for `BAAI/bge-reranker-base` without needing a massive PyTorch dependency tree via `sentence-transformers`.
+### Alternatives Considered: Using `sentence-transformers`.
+### Why Alternatives Were Rejected: Bloats the environment heavily. FastEmbed maintains the lightweight, ONNX-based standard we chose in Phase 0.
+### Impact: Enables Cross-Encoder reranking locally; `qdrant-client` remains compatible.
+### Phase: Phase 2 (Milestone 1)
+
+## [2026-09-18 00:36]
+### Decision: Dense Retrieval using native QdrantClient FastEmbed Integration.
+### Context: Phase 2 Milestone 2 requires querying the existing Qdrant collection with `bge-small-en-v1.5`.
+### Decision Made: Used `QdrantClient.set_model("BAAI/bge-small-en-v1.5")` and `client.query()` to handle both embedding generation and Qdrant search seamlessly in one call.
+### Why: Minimizes manual embedding logic in the application layer and maintains exact compatibility with the Phase 1 Indexing implementation.
+### Alternatives Considered: Manually instantiating `TextEmbedding` and passing raw vectors to `client.search()`.
+### Why Alternatives Were Rejected: Redundant code. The `qdrant-client` 1.8.0 API simplifies this via the `.query()` method.
+### Impact: `DenseRetriever` is concise and directly interoperable with the `apple_10k` collection created in Phase 1.
+### Phase: Phase 2 (Milestone 2)
