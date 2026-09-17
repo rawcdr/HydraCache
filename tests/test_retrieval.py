@@ -142,6 +142,57 @@ def test_hybrid_retrieval_orchestration(mock_sparse, mock_dense):
         mock_sparse.assert_called_once_with("test query", 20)
         mock_dense.assert_called_once_with("test query", 20)
 
+# --- Reranker & Pipeline Tests ---
+
+@patch("src.retrieval.reranker.TextCrossEncoder")
+def test_reranker_logic(MockCrossEncoder):
+    from src.retrieval.reranker import Reranker
+    
+    mock_model = MockCrossEncoder.return_value
+    # Reranker returns an iterable of floats in the same order as candidates
+    mock_model.rerank.return_value = iter([0.1, 0.9, 0.5])
+    
+    r1 = RetrievalResult(chunk_id="c1", text="text1", score=1.0, source_file="doc1.pdf", page_number=1, chunk_type="text", rrf_score=0.03, retrieval_source="hybrid")
+    r2 = RetrievalResult(chunk_id="c2", text="text2", score=0.9, source_file="doc1.pdf", page_number=1, chunk_type="text", rrf_score=0.02, retrieval_source="hybrid")
+    r3 = RetrievalResult(chunk_id="c3", text="text3", score=0.8, source_file="doc1.pdf", page_number=1, chunk_type="text", rrf_score=0.01, retrieval_source="hybrid")
+    
+    reranker = Reranker()
+    reranked = reranker.rerank("query", [r1, r2, r3], top_k=2)
+    
+    assert len(reranked) == 2
+    # c2 got 0.9, c3 got 0.5, c1 got 0.1
+    # Sorting by rerank_score descending -> c2, c3
+    assert reranked[0].chunk_id == "c2"
+    assert reranked[0].rerank_score == 0.9
+    assert reranked[0].rrf_score == 0.02
+    assert reranked[1].chunk_id == "c3"
+    assert reranked[1].rerank_score == 0.5
+    
+    mock_model.rerank.assert_called_once_with("query", ["text1", "text2", "text3"])
+
+@patch("src.retrieval.pipeline.HybridRetriever")
+@patch("src.retrieval.pipeline.Reranker")
+def test_pipeline_orchestration(MockReranker, MockHybrid):
+    from src.retrieval.pipeline import PipelineRetriever
+    
+    mock_hybrid_instance = MockHybrid.return_value
+    mock_reranker_instance = MockReranker.return_value
+    
+    r1 = RetrievalResult(chunk_id="c1", text="text1", score=1.0, source_file="doc1.pdf", page_number=1, chunk_type="text", rrf_score=0.03)
+    mock_hybrid_instance.retrieve_hybrid.return_value = [r1]
+    
+    r1_reranked = RetrievalResult(chunk_id="c1", text="text1", score=1.0, source_file="doc1.pdf", page_number=1, chunk_type="text", rrf_score=0.03, rerank_score=0.99)
+    mock_reranker_instance.rerank.return_value = [r1_reranked]
+    
+    pipeline = PipelineRetriever(top_k=5)
+    results = pipeline.retrieve("test query")
+    
+    assert len(results) == 1
+    assert results[0].rerank_score == 0.99
+    
+    mock_hybrid_instance.retrieve_hybrid.assert_called_once_with("test query")
+    mock_reranker_instance.rerank.assert_called_once_with("test query", [r1], top_k=5)
+
 # --- Integration Tests ---
 
 def is_qdrant_running():

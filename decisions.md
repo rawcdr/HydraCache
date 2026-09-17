@@ -125,3 +125,18 @@ This file is a chronological engineering decision log.
 ### Why Alternatives Were Rejected: The rest of the app is purely synchronous; introducing `asyncio` would unnecessarily infect the call chain and require async adaptations for Qdrant and Pickle endpoints.
 ### Impact: Produces the required Top-20 fused candidate pool for cross-encoder reranking.
 ### Phase: Phase 2 (Milestone 3)
+
+## [2026-09-18 00:54]
+### Decision: Upgrade `fastembed` to `0.8.0` and Use `BAAI/bge-reranker-base`.
+### Context: Phase 2 Milestone 4 requires implementing the Cross-Encoder reranker. The previously installed `fastembed==0.3.4` lacked the `TextCrossEncoder` module.
+### Decision Made: 
+- Upgraded `fastembed` to `0.8.0`.
+- Used `fastembed.rerank.cross_encoder.TextCrossEncoder` with `BAAI/bge-reranker-base`.
+- Preserved the existing `RetrievalResult` schema but added a distinct `rerank_score`.
+### Why: 
+- This enables a fully local ONNX-based cross-encoder without pulling in PyTorch/Sentence-Transformers.
+- Adding a distinct score field rather than overwriting RRF score retains the original provenance.
+### Alternatives Considered: Switching to `sentence-transformers`.
+### Why Alternatives Were Rejected: Bloats the container image and diverges from Phase 0 ONNX principles.
+### Impact: The retrieval pipeline correctly reranks the fused top-20 pool.
+### Phase: Phase 2 (Milestone 4)

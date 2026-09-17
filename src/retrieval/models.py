@@ -13,3 +13,4 @@ class RetrievalResult:
     retrieval_source: str = "unknown"
     provenance: Optional[List[str]] = None
     rrf_score: float = 0.0
+    rerank_score: Optional[float] = None

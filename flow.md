@@ -82,11 +82,20 @@ scripts/run_indexing.py
 5. The merged dictionary is sorted by RRF score descending.
 6. Returns the Top-20 candidate pool.
 
+### Milestone 4: Cross-Encoder Reranking
+1. The Top-20 candidates from `HybridRetriever` are passed to `Reranker.rerank()`.
+2. The `TextCrossEncoder(BAAI/bge-reranker-base)` model generates pairwise relevance scores.
+3. Rerank scores are assigned to the candidates.
+4. Candidates are sorted descending by `rerank_score`.
+5. The pipeline truncates and returns the Top-5 results.
+
 ### Function Call Chain
 ```text
-scripts/test_hybrid.py
- -> HybridRetriever.retrieve_hybrid()
-   ├── SparseRetriever.retrieve() [Thread 1]
-   └── DenseRetriever.retrieve() [Thread 2]
- -> rrf_fuse()
+scripts/test_pipeline.py
+ -> PipelineRetriever.retrieve()
+   ├── HybridRetriever.retrieve_hybrid()
+   │    ├── SparseRetriever.retrieve() [Thread 1]
+   │    ├── DenseRetriever.retrieve() [Thread 2]
+   │    └── rrf_fuse() -> Top-20
+   └── Reranker.rerank() -> Top-5
 ```
