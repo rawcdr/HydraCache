@@ -1,0 +1,23 @@
+qdrant-client==1.8.0
+redis==5.0.3
+rank-bm25==0.2.2
+fastembed==0.2.5
+pdfplumber==0.11.0
+unstructured==0.12.6
+python-dotenv==1.0.1
+numpy==1.26.4
+pandas==2.2.1
+fastapi==0.110.0
+uvicorn==0.29.0
+slowapi==0.1.9
+python-multipart==0.0.9
+streamlit==1.32.2
+ragas==0.1.5
+pytest==8.1.1
+requests==2.31.0
+
+# Added to prevent pip backtracking loops for ragas
+langchain==0.1.13
+langchain-core==0.1.33
+langchain-community==0.0.29
+langsmith==0.1.31
