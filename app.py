@@ -84,24 +84,33 @@ def render_analytics():
     # Overview
     st.subheader("Baseline vs Optimized (HydraCache)")
     
+    # Filter for SUCCESS to avoid aggregating NaNs or failures
+    if "status" in df.columns:
+        success_df = df[df["status"] == "SUCCESS"]
+    else:
+        success_df = df
+        
     metrics = ["faithfulness", "answer_relevancy", "context_precision", "context_recall", "latency", "total_tokens"]
-    avg_df = df.groupby("system")[metrics].mean().reset_index()
-    
-    st.dataframe(avg_df.style.format({
-        "faithfulness": "{:.2f}",
-        "answer_relevancy": "{:.2f}",
-        "context_precision": "{:.2f}",
-        "context_recall": "{:.2f}",
-        "latency": "{:.0f} ms",
-        "total_tokens": "{:.0f}"
-    }), use_container_width=True)
+    if len(success_df) > 0:
+        avg_df = success_df.groupby("system")[metrics].mean().reset_index()
+        
+        st.dataframe(avg_df.style.format({
+            "faithfulness": "{:.2f}",
+            "answer_relevancy": "{:.2f}",
+            "context_precision": "{:.2f}",
+            "context_recall": "{:.2f}",
+            "latency": "{:.0f} ms",
+            "total_tokens": "{:.0f}"
+        }), use_container_width=True)
+    else:
+        st.warning("No successful evaluation records to display.")
     
     col1, col2 = st.columns(2)
     
     with col1:
         # Category Breakdown
         st.subheader("Metrics by Category (Optimized)")
-        opt_df = df[df["system"] == "Optimized"]
+        opt_df = success_df[success_df["system"] == "Optimized"]
         cat_df = opt_df.groupby("category")[["faithfulness", "answer_relevancy"]].mean().reset_index()
         fig1 = px.bar(cat_df, x="category", y=["faithfulness", "answer_relevancy"], barmode="group", title="Quality by Category")
         st.plotly_chart(fig1, use_container_width=True)

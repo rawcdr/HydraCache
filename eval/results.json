@@ -13,21 +13,23 @@
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac.",
       "Mac\nMac net sales increased during 2025 compared to 2024 primarily due to higher net sales of laptops and desktops. iPad\niPad net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPad Air, iPad mini and iPad, partially offset by lower net sales of\niPad Pro. Wearables, Home and Accessories\nWearables, Home and Accessories net sales decreased during 2025 compared to 2024 primarily due to lower net sales of Accessories and Wearables."
     ],
-    "latency": 1251.3444423675537,
+    "latency": 864.635705947876,
     "prompt_tokens": 984,
     "completion_tokens": 225,
     "total_tokens": 1209,
     "faithfulness": NaN,
-    "answer_relevancy": 1.0,
-    "context_precision": 0.99999999995,
-    "context_recall": 1.0
+    "answer_relevancy": NaN,
+    "context_precision": NaN,
+    "context_recall": NaN,
+    "status": "EVALUATOR_API_ERROR",
+    "error_type": "Exception during Ragas execution"
   },
   {
     "question_id": "q2",
     "category": "exact-lookup",
     "system": "Baseline",
     "question": "What were Apple's total net sales in the Europe segment for 2025?",
-    "answer": "Apple\u2019s total net sales in the Europe segment for 2025 were **$111,032\u202fmillion**\u3010Page\u202f50, Section\u202f0f8f7237-1b64-49b2-83d3-c64feff6197e\u3011.",
+    "answer": "Generation failed: LLM Generation failed with status code 429",
     "ground_truth": "$111,032 million",
     "retrieved_chunks": [
       "The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc. | 2025 Form 10-K | 47",
@@ -36,21 +38,23 @@
       "Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045 3 % $ 162,560\nAmericas\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services. The weakness in foreign currencies\nrelative to the U.S. dollar had an unfavorable year-over-year impact on Americas net sales during 2025.",
       "The following tables show net sales for 2025, 2024 and 2023 and long-lived assets as of September 27, 2025 and September 28, 2024 for countries that\nindividually accounted for 10% or more of the respective totals, as well as aggregate amounts for the remaining countries (in millions):\n2025 2024 2023\nNet sales:\n2025 2024\nLong-lived assets:\n(1) China includes Hong Kong and Taiwan. Apple Inc. | 2025 Form 10-K | 48"
     ],
-    "latency": 968.6131477355957,
-    "prompt_tokens": 961,
-    "completion_tokens": 187,
-    "total_tokens": 1148,
+    "latency": 119.23623085021973,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
     "faithfulness": NaN,
-    "answer_relevancy": 1.0,
-    "context_precision": 0.9999999999,
-    "context_recall": 1.0
+    "answer_relevancy": NaN,
+    "context_precision": NaN,
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q3",
     "category": "exact-lookup",
     "system": "Baseline",
     "question": "What were Apple's total net sales in Greater China for 2024?",
-    "answer": "",
+    "answer": "Generation failed: LLM Generation failed with status code 429",
     "ground_truth": "$66,952 million",
     "retrieved_chunks": [
       "Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac. Japan\nJapan net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and iPad. Rest of Asia Pacific\nRest of Asia Pacific net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and Mac.",
@@ -59,21 +63,23 @@
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac.",
       "Rest of Asia Pacific\nRest of Asia Pacific net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and Mac. Apple Inc. | 2025 Form 10-K | 22"
     ],
-    "latency": 3254.0197372436523,
-    "prompt_tokens": 876,
-    "completion_tokens": 2048,
-    "total_tokens": 2924,
+    "latency": 125.55837631225586,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
-    "context_precision": 0.49999999995,
-    "context_recall": 1.0
+    "context_precision": NaN,
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q4",
     "category": "exact-lookup",
     "system": "Baseline",
     "question": "When was the DOJ antitrust lawsuit filed against Apple?",
-    "answer": "The Department of Justice filed the antitrust lawsuit against Apple on **March\u202f21,\u202f2024**\u3010Page\u202f21, Section\u202fe84230ce-d1f3-4bf5-8e11-2059a311751d\u3011.",
+    "answer": "Generation failed: LLM Generation failed with status code 429",
     "ground_truth": "March 21, 2024",
     "retrieved_chunks": [
       "Department of Justice Lawsuit\nOn March 21, 2024, the DOJ and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New\nJersey against the Company alleging monopolization or attempted monopolization in the markets for \u201cperformance smartphones\u201d and \u201csmartphones\u201d in violation\nof U.S. antitrust laws.",
@@ -82,21 +88,23 @@
       "Apple Inc. | 2025 Form 10-K | 18",
       "On April 30, 2025, the California\nDistrict Court found the Company to be in violation of the 2021 Injunction and enjoined the Company from imposing any commission or any fee on purchases\nthat consumers make outside an app; restricting, conditioning, limiting, or prohibiting how developers guide consumers to purchases outside an app; or\notherwise interfering with a consumer\u2019s choice to proceed in or out of an app. The California District Court also denied the Company\u2019s motion to narrow or vacate\nthe 2021 Injunction and referred the Company to the U.S. Attorney for the Northern District of California for a determination whether criminal contempt\nproceedings are appropriate."
     ],
-    "latency": 1027.8491973876953,
-    "prompt_tokens": 697,
-    "completion_tokens": 215,
-    "total_tokens": 912,
+    "latency": 130.8135986328125,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
     "faithfulness": NaN,
-    "answer_relevancy": 1.0,
-    "context_precision": 0.8333333332916666,
-    "context_recall": 1.0
+    "answer_relevancy": NaN,
+    "context_precision": NaN,
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q5",
     "category": "exact-lookup",
     "system": "Baseline",
     "question": "What was the total vesting-date fair value of RSUs for Apple in 2025?",
-    "answer": "The total vesting\u2011date fair value of RSUs for Apple in 2025 was **$17.1\u202fbillion**\u3010Page: 48, Section: a0626ccf-c5f1-4131-88d1-98252cf873c4\u3011.",
+    "answer": "Generation failed: LLM Generation failed with status code 429",
     "ground_truth": "$17.1 billion",
     "retrieved_chunks": [
       "The Company estimates the grant-date\nfair value of RSUs based on the closing price of the Company\u2019s common stock on the date of grant. The total vesting-date fair value of RSUs was $17.1 billion, $15.8 billion and $15.9 billion for 2025, 2024 and 2023, respectively. The majority of RSUs that\nvested in 2025, 2024 and 2023 were net share settled such that the Company withheld shares with a value equivalent to the employees\u2019 obligation for the\napplicable income and other employment taxes, and remitted cash to the appropriate taxing authorities.",
@@ -105,14 +113,16 @@
       "Apple Inc. | 2025 Form 10-K | 31",
       "Shares of Common Stock\nThe following table shows the changes in shares of common stock for 2025, 2024 and 2023 (in thousands):\n2025 2024 2023\nCommon stock outstanding, beginning balances 15,116,786 15,550,061 15,943,425\nNote 11 \u2013 Share-Based Compensation\n2022 Employee Stock Plan\nThe Apple Inc. 2022 Employee Stock Plan (\u201c2022 Plan\u201d) is a shareholder-approved plan that provides for broad-based equity grants to employees, including\nexecutive officers, and permits the granting of RSUs, stock grants, performance-based awards, stock options and stock appreciation rights. RSUs granted under\nthe 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company\u2019s common stock on a\none-for-one basis."
     ],
-    "latency": 855.877161026001,
-    "prompt_tokens": 841,
-    "completion_tokens": 198,
-    "total_tokens": 1039,
+    "latency": 130.9523582458496,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q6",
@@ -128,14 +138,16 @@
       "Apple Inc. | 2025 Form 10-K | 9",
       "Apple Inc. | 2025 Form 10-K | 6"
     ],
-    "latency": 160.7522964477539,
+    "latency": 138.9317512512207,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q7",
@@ -151,14 +163,16 @@
       "Services\nAdvertising\nThe Company\u2019s advertising services include third-party licensing arrangements and the Company\u2019s own advertising platforms. AppleCare\nThe Company offers a portfolio of fee-based service and support products under the AppleCare\u00ae brand. The offerings provide priority access to Apple technical\nsupport, access to the global Apple authorized service network for repair and replacement services, and in many cases additional coverage for instances of\naccidental damage or theft and loss, depending on the country and type of product.",
       "The Company depends on the performance of carriers and other resellers. The Company distributes its products and certain of its services through cellular network carriers and other resellers, many of which distribute products and\nservices from competitors. Resellers offer financing, installment payment plans or subsidies for users\u2019 purchases of devices, and such plans may be\ndiscontinued or modified any time."
     ],
-    "latency": 157.24611282348633,
+    "latency": 119.83680725097656,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q8",
@@ -174,14 +188,16 @@
       "Apple Inc. | 2025 Form 10-K | 18",
       "Apple Inc. | 2025 Form 10-K | 1"
     ],
-    "latency": 128.3113956451416,
+    "latency": 109.74812507629395,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q9",
@@ -197,14 +213,16 @@
       "Date: October 31, 2025\nBy: /s/ Kevan Parekh\nKevan Parekh\nSenior Vice President,\nChief Financial Officer\nA signed original of this written statement required by Section 906 has been provided to Apple Inc. and will be retained by Apple Inc. and furnished to the\nSecurities and Exchange Commission or its staff upon request.",
       "333-60455) pertaining to Apple Inc. Non-Employee Director Stock Plan,\n(6) Registration Statement (Form S-8 No. 333-203698) pertaining to Apple Inc."
     ],
-    "latency": 141.22390747070312,
+    "latency": 136.82007789611816,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q10",
@@ -220,14 +238,16 @@
       "The Company relies on the continued availability and development of compelling and innovative software applications for its products. The Company\u2019s products\nand operating systems are subject to rapid technological change, and when third-party developers are unable to or choose not to keep up with this pace of\nchange, their applications can fail to take advantage of these changes to deliver improved customer experiences, can operate incorrectly, and can result in\ndissatisfied customers and lower customer demand for the Company\u2019s products. Failure to obtain or create digital content that appeals to the Company\u2019s customers, or to make such content available on commercially reasonable\nterms, could have a material adverse impact on the Company\u2019s business, results of operations and financial condition.",
       "The Company also\npursues environmental and other goals and initiatives that involve risks and uncertainties, require investments, and depend in part on third-party performance or\ndata that is outside the Company\u2019s control, and the Company may not be able to fully achieve all of its goals and initiatives. Efforts by the Company to advance\nits business and values, or achieve its goals and further its initiatives, or to align with stakeholders\u2019 expectations, or comply with evolving, varied and at times\nconflicting federal, state and international laws, executive orders, regulations and standards, or any failure or perceived failure to do so, can result in adverse\nreactions by consumers and other stakeholders, including the commencement of legal and regulatory proceedings against the Company, and can materially\nadversely affect the Company\u2019s business, reputation, results of operations, financial condition and stock price. Apple Inc."
     ],
-    "latency": 162.35828399658203,
+    "latency": 123.39615821838379,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q11",
@@ -243,14 +263,16 @@
       "Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac. Japan\nJapan net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and iPad. Rest of Asia Pacific\nRest of Asia Pacific net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and Mac.",
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac."
     ],
-    "latency": 132.56597518920898,
+    "latency": 143.48149299621582,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q12",
@@ -266,14 +288,16 @@
       "Products and Services Performance\nThe following table shows net sales by category for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\niPhone $ 209,586 4 % $ 201,183 \u2014 % $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. iPhone\niPhone net sales increased during 2025 compared to 2024 due to higher net sales of Pro models. Mac\nMac net sales increased during 2025 compared to 2024 primarily due to higher net sales of laptops and desktops.",
       "Tariffs or other measures are announced or imposed, to what extent other countries\nimplement tariffs or other retaliatory measures in response, and the overall magnitude and duration of these measures. Trade and other international disputes\ncan have an adverse impact on the overall macroeconomic environment and result in shifts and reductions in consumer spending and negative consumer\nsentiment for the Company\u2019s products and services, all of which can further adversely affect the Company\u2019s business and results of operations. Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045 3 % $ 162,560\nAmericas\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services."
     ],
-    "latency": 155.36999702453613,
+    "latency": 112.86497116088867,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q13",
@@ -289,14 +313,16 @@
       "Operating income for each segment consists of net sales to third parties,\nrelated cost of sales, and operating expenses directly attributable to the segment. The information provided to the CODM for purposes of making decisions and\nassessing segment performance excludes asset information. The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc.",
       "The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions):\n2025 2024 2023\niPhone $ 209,586 $ 201,183 $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. The Company\u2019s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 13, \u201cSegment\nInformation and Geographic Data\u201d for 2025, 2024 and 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net\nsales. As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively."
     ],
-    "latency": 121.14715576171875,
+    "latency": 165.84324836730957,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q14",
@@ -312,14 +338,16 @@
       "Apple Inc. | 2025 Form 10-K | 18",
       "Apple Inc. | 2025 Form 10-K | 1"
     ],
-    "latency": 162.56022453308105,
+    "latency": 119.83895301818848,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q15",
@@ -335,14 +363,16 @@
       "The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc. | 2025 Form 10-K | 47",
       "Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045 3 % $ 162,560\nAmericas\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services. The weakness in foreign currencies\nrelative to the U.S. dollar had an unfavorable year-over-year impact on Americas net sales during 2025."
     ],
-    "latency": 131.44803047180176,
+    "latency": 113.09051513671875,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q16",
@@ -358,14 +388,16 @@
       "Apple Inc. | 2025 Form 10-K | 1",
       "Apple Inc. | 2025 Form 10-K | 4"
     ],
-    "latency": 141.07441902160645,
+    "latency": 117.91658401489258,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q17",
@@ -381,14 +413,16 @@
       "The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions):\n2025 2024 2023\niPhone $ 209,586 $ 201,183 $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. The Company\u2019s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 13, \u201cSegment\nInformation and Geographic Data\u201d for 2025, 2024 and 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net\nsales. As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively.",
       "Products and Services Performance\nThe following table shows net sales by category for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\niPhone $ 209,586 4 % $ 201,183 \u2014 % $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. iPhone\niPhone net sales increased during 2025 compared to 2024 due to higher net sales of Pro models. Mac\nMac net sales increased during 2025 compared to 2024 primarily due to higher net sales of laptops and desktops."
     ],
-    "latency": 124.43995475769043,
+    "latency": 119.75216865539551,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q18",
@@ -404,14 +438,16 @@
       "Selling, General and Administrative\nThe growth in selling, general and administrative expense during 2025 compared to 2024 was primarily driven by increases in headcount-related expenses and\nvariable selling expenses. Apple Inc. | 2025 Form 10-K | 24",
       "Products and Services Performance\nThe following table shows net sales by category for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\niPhone $ 209,586 4 % $ 201,183 \u2014 % $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. iPhone\niPhone net sales increased during 2025 compared to 2024 due to higher net sales of Pro models. Mac\nMac net sales increased during 2025 compared to 2024 primarily due to higher net sales of laptops and desktops."
     ],
-    "latency": 137.7429962158203,
+    "latency": 114.88914489746094,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q19",
@@ -427,14 +463,16 @@
       "As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively. As of September 27,\n2025, the Company expects 66% of total deferred revenue to be realized in less than a year, 23% within one-to-two years, 9% within two-to-three years and 2%\nin greater than three years. Note 3 \u2013 Earnings Per Share\nThe following table shows the computation of basic and diluted earnings per share for 2025, 2024 and 2023 (net income in millions and shares in thousands):\n2025 2024 2023\nNumerator:\nApproximately 24 million restricted stock units (\u201cRSUs\u201d) were excluded from the computation of diluted earnings per share for 2023 because their effect would\nhave been antidilutive.",
       "RSUs granted under\nthe 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company\u2019s common stock on a\none-for-one basis. All RSUs granted under the 2022 Plan have dividend equivalent rights, which entitle holders of RSUs to the same dividend value per share as\nholders of common stock. A maximum of approximately 1.3 billion shares were authorized for issuance pursuant to 2022 Plan awards at the time the plan was\napproved on March 4, 2022."
     ],
-    "latency": 115.77343940734863,
+    "latency": 121.30475044250488,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q20",
@@ -450,14 +488,16 @@
       "Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac. Japan\nJapan net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and iPad. Rest of Asia Pacific\nRest of Asia Pacific net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and Mac.",
       "dollar value of the gross margins the Company earns on foreign currency\u2013denominated sales. Apple Inc. | 2025 Form 10-K | 15"
     ],
-    "latency": 376.0213851928711,
+    "latency": 114.29429054260254,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q1",
@@ -473,14 +513,16 @@
       "The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions):\n2025 2024 2023\niPhone $ 209,586 $ 201,183 $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. The Company\u2019s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 13, \u201cSegment\nInformation and Geographic Data\u201d for 2025, 2024 and 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net\nsales. As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively.",
       "Tariffs or other measures are announced or imposed, to what extent other countries\nimplement tariffs or other retaliatory measures in response, and the overall magnitude and duration of these measures. Trade and other international disputes\ncan have an adverse impact on the overall macroeconomic environment and result in shifts and reductions in consumer spending and negative consumer\nsentiment for the Company\u2019s products and services, all of which can further adversely affect the Company\u2019s business and results of operations. Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045 3 % $ 162,560\nAmericas\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services."
     ],
-    "latency": 1278.6273956298828,
+    "latency": 1497.5292682647705,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q2",
@@ -496,14 +538,16 @@
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac.",
       "Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045 3 % $ 162,560\nAmericas\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services. The weakness in foreign currencies\nrelative to the U.S. dollar had an unfavorable year-over-year impact on Americas net sales during 2025."
     ],
-    "latency": 1232.408046722412,
+    "latency": 1885.6568336486816,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q3",
@@ -519,14 +563,16 @@
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac.",
       "Operating income for each segment consists of net sales to third parties,\nrelated cost of sales, and operating expenses directly attributable to the segment. The information provided to the CODM for purposes of making decisions and\nassessing segment performance excludes asset information. The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc."
     ],
-    "latency": 1255.6400299072266,
+    "latency": 1386.000633239746,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q4",
@@ -542,14 +588,16 @@
       "antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been\nfiled in state and federal courts in the U.S.",
       "On August 5, 2024, Google was found to have violated\nU.S. antitrust laws. In connection with this finding, on September 2, 2025, the U.S."
     ],
-    "latency": 1081.594705581665,
+    "latency": 1152.1894931793213,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q5",
@@ -565,14 +613,16 @@
       "RSUs granted under\nthe 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company\u2019s common stock on a\none-for-one basis. All RSUs granted under the 2022 Plan have dividend equivalent rights, which entitle holders of RSUs to the same dividend value per share as\nholders of common stock. A maximum of approximately 1.3 billion shares were authorized for issuance pursuant to 2022 Plan awards at the time the plan was\napproved on March 4, 2022.",
       "Shares of Common Stock\nThe following table shows the changes in shares of common stock for 2025, 2024 and 2023 (in thousands):\n2025 2024 2023\nCommon stock outstanding, beginning balances 15,116,786 15,550,061 15,943,425\nNote 11 \u2013 Share-Based Compensation\n2022 Employee Stock Plan\nThe Apple Inc. 2022 Employee Stock Plan (\u201c2022 Plan\u201d) is a shareholder-approved plan that provides for broad-based equity grants to employees, including\nexecutive officers, and permits the granting of RSUs, stock grants, performance-based awards, stock options and stock appreciation rights. RSUs granted under\nthe 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company\u2019s common stock on a\none-for-one basis."
     ],
-    "latency": 1184.3512058258057,
+    "latency": 1270.8215713500977,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q6",
@@ -588,14 +638,16 @@
       "Apple Inc. | 2025 Form 10-K | 2",
       "Apple Inc. | 2025 Form 10-K | 6"
     ],
-    "latency": 1213.1412029266357,
+    "latency": 1330.209732055664,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q7",
@@ -611,14 +663,16 @@
       "Services\nAdvertising\nThe Company\u2019s advertising services include third-party licensing arrangements and the Company\u2019s own advertising platforms. AppleCare\nThe Company offers a portfolio of fee-based service and support products under the AppleCare\u00ae brand. The offerings provide priority access to Apple technical\nsupport, access to the global Apple authorized service network for repair and replacement services, and in many cases additional coverage for instances of\naccidental damage or theft and loss, depending on the country and type of product.",
       "In addition, component suppliers may fail, be subject to consolidation within a particular industry, or decide to concentrate on the production of common\ncomponents instead of components customized to meet the Company\u2019s requirements, further limiting the Company\u2019s ability to obtain sufficient quantities of\ncomponents on commercially reasonable terms, or at all. Substantially all of the Company\u2019s hardware products are manufactured by outsourcing partners that are located primarily in China mainland, India, Japan, South\nKorea, Taiwan and Vietnam. Apple Inc."
     ],
-    "latency": 993.5052394866943,
+    "latency": 1210.550308227539,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q8",
@@ -634,14 +688,16 @@
       "Apple Inc. | 2025 Form 10-K | 4",
       "Apple Inc. | 2025 Form 10-K | 1"
     ],
-    "latency": 1051.5594482421875,
+    "latency": 1212.9037380218506,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q9",
@@ -657,14 +713,16 @@
       "The Company\u2019s Information Security team coordinates with teams across the Company to prevent, respond to and manage security incidents, and engages third\nparties, as appropriate, to assess, test or otherwise assist with aspects of its security processes and incident response. A dedicated Supplier Trust team\nmanages information security risks the Company is exposed to through its supplier relationships. The Company has processes to log, track, address, and\nescalate for further assessment and report, as appropriate, cybersecurity incidents across the Company and its suppliers to senior management and the Audit\nand Finance Committee (\u201cAudit Committee\u201d) of the Board.",
       "Although malicious attacks perpetrated to gain access to confidential information, including personal information, affect many companies across various\nindustries, the Company is at a relatively greater risk of being targeted because of its high profile and the value of the confidential information it creates, owns,\nmanages, stores and processes. Apple Inc. | 2025 Form 10-K | 11"
     ],
-    "latency": 1139.1313076019287,
+    "latency": 1243.0083751678467,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q10",
@@ -680,14 +738,16 @@
       "The Company may be unable to continue to offer a wide variety of content at commercially reasonable prices\nwith acceptable usage rules. The Company also produces its own digital content, which can be costly to produce due to intense and increasing competition for talent, content and\nsubscribers, and may fail to appeal to the Company\u2019s customers. The Company\u2019s success depends largely on the talents and efforts of its team members, the continued service and availability of highly skilled\nemployees, including key personnel, and the Company\u2019s ability to nurture its distinctive and inclusive culture.",
       "The Company invests in resources to help its people develop and achieve their career goals. The Company offers programs through Apple University on\nleadership, management and influence, as well as Apple culture and values. Team members can also take advantage of online classes for business, technical\nand personal development."
     ],
-    "latency": 1201.1346817016602,
+    "latency": 1331.6142559051514,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q11",
@@ -703,14 +763,16 @@
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac.",
       "The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc. | 2025 Form 10-K | 47"
     ],
-    "latency": 1220.0307846069336,
+    "latency": 1312.1328353881836,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q12",
@@ -726,14 +788,16 @@
       "Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac. Japan\nJapan net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and iPad. Rest of Asia Pacific\nRest of Asia Pacific net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and Mac.",
       "The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc. | 2025 Form 10-K | 47"
     ],
-    "latency": 1310.9207153320312,
+    "latency": 1483.0498695373535,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q13",
@@ -749,14 +813,16 @@
       "Operating income for each segment consists of net sales to third parties,\nrelated cost of sales, and operating expenses directly attributable to the segment. The information provided to the CODM for purposes of making decisions and\nassessing segment performance excludes asset information. The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc.",
       "During 2025, the Company\u2019s net sales through\nits direct and indirect distribution channels accounted for 40% and 60%, respectively, of total net sales. Competition\nThe markets for the Company\u2019s products and services are highly competitive and are characterized by aggressive price competition, downward pressure on\ngross margins, continual improvement in product performance, and price sensitivity on the part of consumers and businesses. The markets in which the\nCompany competes are further defined by frequent introduction of new products and services, short product life cycles, evolving industry standards, and rapid\nadoption of technological advancements by competitors."
     ],
-    "latency": 1235.755443572998,
+    "latency": 1418.7970161437988,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q14",
@@ -772,14 +838,16 @@
       "Note 3 \u2013 Earnings Per Share\nThe following table shows the computation of basic and diluted earnings per share for 2025, 2024 and 2023 (net income in millions and shares in thousands):\n2025 2024 2023\nNumerator:\nApproximately 24 million restricted stock units (\u201cRSUs\u201d) were excluded from the computation of diluted earnings per share for 2023 because their effect would\nhave been antidilutive. Apple Inc. | 2025 Form 10-K | 36",
       "Provision for Income Taxes\nProvision for income taxes, effective tax rate and statutory federal income tax rate for 2025, 2024 and 2023 were as follows (dollars in millions):\n2025 2024 2023\nProvision for income taxes $ 20,719 $ 29,749 $ 16,741\nThe Company\u2019s effective tax rate for 2025 was lower than the statutory federal income tax rate primarily due to a lower effective tax rate on foreign earnings,\nincluding the impact of changes in unrecognized tax benefits, the impact of the U.S. federal R&D credit, and tax benefits from share-based compensation,\npartially offset by a change in valuation allowance and state income taxes. The Company\u2019s effective tax rate for 2025 was lower compared to 2024 due to a $10.7 billion year-over-year decrease in the provision for income taxes related\nto the State Aid Decision (refer to Note 7, \u201cIncome Taxes\u201d in the Notes to Consolidated Financial Statements in Part II, Item 8 of this Form 10-K) and the impact\nof changes in unrecognized tax benefits, partially offset by a change in valuation allowance and a higher effective tax rate on foreign earnings."
     ],
-    "latency": 1390.4130458831787,
+    "latency": 1485.8875274658203,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q15",
@@ -795,14 +863,16 @@
       "The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions):\n2025 2024 2023\niPhone $ 209,586 $ 201,183 $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. The Company\u2019s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 13, \u201cSegment\nInformation and Geographic Data\u201d for 2025, 2024 and 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net\nsales. As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively.",
       "The following tables show net sales for 2025, 2024 and 2023 and long-lived assets as of September 27, 2025 and September 28, 2024 for countries that\nindividually accounted for 10% or more of the respective totals, as well as aggregate amounts for the remaining countries (in millions):\n2025 2024 2023\nNet sales:\n2025 2024\nLong-lived assets:\n(1) China includes Hong Kong and Taiwan. Apple Inc. | 2025 Form 10-K | 48"
     ],
-    "latency": 1330.9662342071533,
+    "latency": 1583.3752155303955,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q16",
@@ -818,14 +888,16 @@
       "Tariffs or other measures are announced or imposed, to what extent other countries\nimplement tariffs or other retaliatory measures in response, and the overall magnitude and duration of these measures. Trade and other international disputes\ncan have an adverse impact on the overall macroeconomic environment and result in shifts and reductions in consumer spending and negative consumer\nsentiment for the Company\u2019s products and services, all of which can further adversely affect the Company\u2019s business and results of operations. Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045 3 % $ 162,560\nAmericas\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services.",
       "Apple Inc. | 2025 Form 10-K | 7"
     ],
-    "latency": 1203.977346420288,
+    "latency": 1531.0297012329102,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q17",
@@ -841,14 +913,16 @@
       "The Commission may\nalso seek to impose additional fines if it deems that the Company has violated a cease and desist order. The Company believes that it complies with the DMA\nand has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit\nOn March 21, 2024, the DOJ and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S.",
       "dollar had an unfavorable year-over-year impact on Americas net sales during 2025. Europe\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac. Greater China\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac."
     ],
-    "latency": 1206.5131664276123,
+    "latency": 1866.325855255127,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q18",
@@ -864,14 +938,16 @@
       "The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc. | 2025 Form 10-K | 47",
       "Operating income for each segment consists of net sales to third parties,\nrelated cost of sales, and operating expenses directly attributable to the segment. The information provided to the CODM for purposes of making decisions and\nassessing segment performance excludes asset information. The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc."
     ],
-    "latency": 1237.36572265625,
+    "latency": 1509.0537071228027,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q19",
@@ -887,14 +963,16 @@
       "The majority of RSUs that\nvested in 2025, 2024 and 2023 were net share settled such that the Company withheld shares with a value equivalent to the employees\u2019 obligation for the\napplicable income and other employment taxes, and remitted cash to the appropriate taxing authorities. Total payments to taxing authorities for employees\u2019 tax\nobligations were $6.1 billion in 2025 and $5.6 billion in both 2024 and 2023. Share-Based Compensation\nThe following table shows share-based compensation expense and the related income tax benefit included in the Consolidated Statements of Operations for\n2025, 2024 and 2023 (in millions):\n2025 2024 2023\nShare-based compensation expense $ 12,863 $ 11,688 $ 10,833\nAs of September 27, 2025, the total unrecognized compensation cost related to outstanding RSUs was $21.8 billion, which the Company expects to recognize\nover a weighted-average period of 2.5 years.",
       "As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively. As of September 27,\n2025, the Company expects 66% of total deferred revenue to be realized in less than a year, 23% within one-to-two years, 9% within two-to-three years and 2%\nin greater than three years. Note 3 \u2013 Earnings Per Share\nThe following table shows the computation of basic and diluted earnings per share for 2025, 2024 and 2023 (net income in millions and shares in thousands):\n2025 2024 2023\nNumerator:\nApproximately 24 million restricted stock units (\u201cRSUs\u201d) were excluded from the computation of diluted earnings per share for 2023 because their effect would\nhave been antidilutive."
     ],
-    "latency": 1375.2918243408203,
+    "latency": 1495.4638481140137,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   },
   {
     "question_id": "q20",
@@ -910,13 +988,15 @@
       "The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for 2025, 2024 and 2023 (in millions):\n2025 2024 2023\niPhone $ 209,586 $ 201,183 $ 200,583\n(1) Services net sales include amortization of the deferred value of services bundled in the sales price of certain products. The Company\u2019s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 13, \u201cSegment\nInformation and Geographic Data\u201d for 2025, 2024 and 2023, except in Greater China, where iPhone revenue represented a moderately higher proportion of net\nsales. As of September 27, 2025 and September 28, 2024, the Company had total deferred revenue of $13.7 billion and $12.8 billion, respectively.",
       "Operating income for each segment consists of net sales to third parties,\nrelated cost of sales, and operating expenses directly attributable to the segment. The information provided to the CODM for purposes of making decisions and\nassessing segment performance excludes asset information. The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032 $ 64,377 $ 28,703 $ 33,696 $ \u2014 $ 416,161\n2024\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 167,045 $ 101,328 $ 66,952 $ 25,052 $ 30,658 $ \u2014 $ 391,035\n2023\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 162,560 $ 94,294 $ 72,559 $ 24,257 $ 29,615 $ \u2014 $ 383,285\nApple Inc."
     ],
-    "latency": 1222.367286682129,
+    "latency": 1301.7299175262451,
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,
     "faithfulness": NaN,
     "answer_relevancy": NaN,
     "context_precision": NaN,
-    "context_recall": NaN
+    "context_recall": NaN,
+    "status": "EVALUATOR_RATE_LIMIT",
+    "error_type": "Synthesis Rate Limit"
   }
 ]
