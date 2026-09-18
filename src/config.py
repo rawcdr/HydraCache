@@ -19,3 +19,7 @@ class Config:
     # Data paths
     RAW_DATA_PATH = os.getenv("RAW_DATA_PATH", "data/raw/apple_10k_2025.pdf")
     BM25_INDEX_PATH = os.getenv("BM25_INDEX_PATH", "data/processed/bm25_index.pkl")
+    
+    # Phase 5 API Settings
+    API_KEY = os.getenv("API_KEY", "default-dev-key")
+    RATE_LIMIT_PER_MINUTE = int(os.getenv("RATE_LIMIT_PER_MINUTE", "10"))

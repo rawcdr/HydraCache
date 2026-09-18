@@ -132,3 +132,54 @@ scripts/test_cache.py
 4. A 1-item HuggingFace `Dataset` is built.
 5. `ragas.evaluate` is called with `RunConfig(max_workers=1)` and `raise_exceptions=False`.
 6. The result is serialized and incrementally saved to `eval/results.json`.
+
+## Phase 5 (Production Hardening)
+
+### /query
+```text
+HTTP POST /query
+ -> add_request_id_and_log (Middleware)
+ -> get_api_key (Auth Dependency)
+ -> get_client_id (Rate Limit Identity)
+ -> limiter.limit (Rate Limit)
+ -> query_endpoint
+   -> request payload validation (Pydantic QueryRequest)
+   -> app.state.pipeline.answer(query)
+     -> [SemanticCache]
+     -> [Phase 2 Retrieval on Miss]
+     -> [Generation on Miss]
+   -> response formatting (Pydantic QueryResponse)
+```
+
+### /documents
+```text
+HTTP POST /documents (Multipart Form PDF)
+ -> add_request_id_and_log (Middleware)
+ -> get_api_key (Auth Dependency)
+ -> limiter.limit (Rate Limit)
+ -> upload_document
+   -> validate PDF content-type and size
+   -> save PDF to disk
+   -> register job in memory (job_registry)
+   -> enqueue run_ingestion_pipeline in BackgroundTasks
+ -> respond with job_id (status: queued)
+
+Background Task: run_ingestion_pipeline
+ -> update job status to 'running'
+ -> PDFParser.parse()
+ -> TextChunker.chunk_documents()
+ -> DenseIndexer.index()
+ -> SparseIndexer.index()
+ -> update job status to 'completed' or 'failed'
+```
+
+### /documents/{job_id}
+```text
+HTTP GET /documents/{job_id}
+ -> add_request_id_and_log (Middleware)
+ -> get_api_key (Auth Dependency)
+ -> limiter.limit (Rate Limit)
+ -> get_job_status
+   -> lookup in memory job_registry
+   -> format response (Pydantic JobStatusResponse)
+```

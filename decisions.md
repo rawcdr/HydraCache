@@ -182,3 +182,30 @@ This file is a chronological engineering decision log.
 - Bypassed Ragas exception raising (`raise_exceptions=False`) so failures insert `NaN` metrics without terminating the script.
 ### Why: To safely serialize the LLM calls and honor free-tier token limitations, and to prevent losing evaluation progress.
 ### Phase: Phase 4 (Evaluator Fix)
+
+## [2026-09-18 12:35]
+### Decision: Document Phase 4 Evaluation Limitation due to API Limits.
+### Context: The full Ragas quality evaluation was attempted against 40 evaluation runs but was blocked by Groq evaluator API rate limits before any valid Ragas scores were produced. Cache performance was independently measured using the cache profiling workload.
+### Decision Made: Refused to fabricate benchmark numbers. Instrument the evaluator, distinguish infrastructure failures from application failures, and explicitly document the limitation in README.md and decisions.md.
+### Why: To maintain engineering integrity and provide clear attribution of the failure mode to the external evaluation infrastructure (Groq API limit), rather than a retrieval, caching, or synthesis failure in the HydraCache application itself.
+### Phase: Phase 4
+
+## [2026-09-18 13:06]
+### Decision: Phase 5 API Architecture & Rate Limiting Identity
+### Context: Needed to expose the pipeline via a robust REST API, incorporating rate limits and authentication.
+### Decision Made:
+- Used `FastAPI` to build `/query`, `/documents`, and `/health` endpoints.
+- Implemented `slowapi` for rate limiting (10 req/min).
+- The rate limiter uses a SHA-256 hash of the `X-API-Key` as the logical client identifier rather than the raw API key or IP address (unless unauthenticated).
+### Why:
+- Preserves distinct rate limit buckets per credential without ever logging or exposing the raw API key in memory.
+### Phase: Phase 5
+
+## [2026-09-18 13:07]
+### Decision: In-Memory Asynchronous Job Queue for /documents
+### Context: The specification requested asynchronous PDF ingestion.
+### Decision Made:
+- Implemented an in-memory `job_registry` dict and used `fastapi.BackgroundTasks` to execute the existing Phase 1 ingestion pipeline (`PDFParser -> TextChunker -> Qdrant/BM25`).
+### Why:
+- Avoids over-engineering (no Celery/Redis required for the job queue right now). State is ephemeral and lost on restart, but satisfies Phase 5 constraints to keep infrastructure lightweight while still being non-blocking.
+### Phase: Phase 5

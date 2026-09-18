@@ -91,6 +91,73 @@ python eval/run_eval.py
 python eval/run_cache_profile.py
 ```
 
+## Phase 4 Evaluation Limitation
+
+The evaluation framework, benchmark dataset, baseline, cache profiling,
+failure analysis, and Streamlit dashboard are fully implemented.
+
+The full Ragas quality evaluation was attempted against 40 evaluation
+runs but was blocked by Groq evaluator API rate limits before any valid
+Ragas scores were produced.
+
+Therefore, no Ragas quality metric is reported as a final benchmark
+result.
+
+Cache performance was independently measured using the cache profiling
+workload.
+
+This limitation concerns the evaluation provider and does not indicate
+a retrieval, caching, or synthesis failure in HydraCache.
+
+## Phase 5: Production API
+
+HydraCache is exposed as a production REST API using FastAPI.
+
+### Start the Server
+```bash
+uvicorn src.api.main:app --port 8000
+```
+
+### Environment Configuration
+The API relies on standard configuration via `.env` or environment variables:
+- `API_KEY`: A secret string used for authenticating requests.
+- `RATE_LIMIT_PER_MINUTE`: Defaults to 10.
+- Standard Qdrant/Redis and LLM keys (`GROQ_API_KEY`).
+
+### API Authentication & Rate Limiting
+All core endpoints require the API Key to be passed via the `X-API-Key` header.
+Rate limits (default 10 requests / minute) are tracked per unique API Key (using a secure SHA-256 hash identity in memory). 
+
+### Endpoints
+1. `GET /health` (Unauthenticated) - Basic liveness probe.
+2. `POST /query` (Authenticated) - Submits a query to the full RAG+Cache pipeline. Returns `QueryResponse` (answer, citations, tokens, latency).
+3. `POST /documents` (Authenticated) - Uploads a PDF (Max 50MB) and queues it for asynchronous Phase 1 ingestion. Returns a `job_id`.
+4. `GET /documents/{job_id}` (Authenticated) - Polls the status of the background ingestion job.
+
+### Example cURL
+```bash
+# Query
+curl -X POST "http://localhost:8000/query" \
+     -H "X-API-Key: your_secret_api_key_here" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "What were Apple net sales in 2025?"}'
+
+# Upload Document
+curl -X POST "http://localhost:8000/documents" \
+     -H "X-API-Key: your_secret_api_key_here" \
+     -F "file=@data/raw/apple_10k_2025.pdf"
+```
+
+### Observability
+All requests emit structured JSON logs. The raw API key is explicitly excluded from logs to prevent credential leakage. A unique `X-Request-ID` is assigned to each request and included in both the JSON logs and the response headers.
+
+### Testing
+- **Unit/Integration Tests**: `pytest tests/test_api.py -v` (runs endpoints via `TestClient`).
+- **Live Server Manual Tests**: `python scripts/test_api.py` (executes realistic HTTP traffic and evaluates rate limit exhaustion).
+
+### Known Limitations
+- The `GET /documents/{job_id}` ingestion status relies on an in-memory dictionary. If the FastAPI process restarts, job histories are cleared. A distributed queue (e.g., Celery) would be required for durable job status tracking.
+
 ## Planned Phase Roadmap
 - **[x] Phase 0**: Project Foundation & Environment Setup (Implemented)
 - **[x] Phase 1**: Parsing, Chunking, BM25 + Qdrant Indexing (Implemented)
