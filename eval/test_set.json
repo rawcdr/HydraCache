@@ -1,0 +1,142 @@
+[
+  {
+    "id": "q1",
+    "question": "What were Apple's total net sales in the Americas segment for 2025?",
+    "ground_truth_answer": "$178,353 million",
+    "category": "exact-lookup",
+    "expected_source": "Page 50, Page 25"
+  },
+  {
+    "id": "q2",
+    "question": "What were Apple's total net sales in the Europe segment for 2025?",
+    "ground_truth_answer": "$111,032 million",
+    "category": "exact-lookup",
+    "expected_source": "Page 50"
+  },
+  {
+    "id": "q3",
+    "question": "What were Apple's total net sales in Greater China for 2024?",
+    "ground_truth_answer": "$66,952 million",
+    "category": "exact-lookup",
+    "expected_source": "Page 50"
+  },
+  {
+    "id": "q4",
+    "question": "When was the DOJ antitrust lawsuit filed against Apple?",
+    "ground_truth_answer": "March 21, 2024",
+    "category": "exact-lookup",
+    "expected_source": "Page 21"
+  },
+  {
+    "id": "q5",
+    "question": "What was the total vesting-date fair value of RSUs for Apple in 2025?",
+    "ground_truth_answer": "$17.1 billion",
+    "category": "exact-lookup",
+    "expected_source": "Page 48"
+  },
+  {
+    "id": "q6",
+    "question": "What are some of the supply chain and component procurement risks Apple faces according to the 2025 10-K?",
+    "ground_truth_answer": "Apple faces risks of industry-wide shortages, commodity pricing fluctuations, and restrictions on international trade which can limit availability or increase costs of components and raw materials.",
+    "category": "narrative",
+    "expected_source": "Page 6"
+  },
+  {
+    "id": "q7",
+    "question": "How does Apple distribute its products?",
+    "ground_truth_answer": "Apple sells its products directly to consumers, small and mid-sized businesses, education, enterprise, and government customers, as well as indirectly through third-party cellular network carriers and resellers.",
+    "category": "narrative",
+    "expected_source": "Page 19, Page 5"
+  },
+  {
+    "id": "q8",
+    "question": "Describe the DOJ antitrust lawsuit filed against Apple in 2024.",
+    "ground_truth_answer": "The DOJ and state attorneys general filed a civil lawsuit alleging monopolization or attempted monopolization in the 'performance smartphones' and 'smartphones' markets in violation of U.S. antitrust laws.",
+    "category": "narrative",
+    "expected_source": "Page 21"
+  },
+  {
+    "id": "q9",
+    "question": "What does Apple's Head of Corporate Information Security do?",
+    "ground_truth_answer": "The Head of Corporate Information Security leads a team that develops security policies, trains employees, implements security controls, monitors for security events, and executes security testing.",
+    "category": "narrative",
+    "expected_source": "Page 20"
+  },
+  {
+    "id": "q10",
+    "question": "What happens if Apple fails to manage changing workforce dynamics and nurture its culture?",
+    "ground_truth_answer": "It could adversely affect the company's ability to recruit and retain highly skilled employees, impacting its business, reputation, results of operations, financial condition, and stock price.",
+    "category": "narrative",
+    "expected_source": "Page 13"
+  },
+  {
+    "id": "q11",
+    "question": "Which reportable segment had the lowest net sales in 2025?",
+    "ground_truth_answer": "Japan, with $28,703 million",
+    "category": "table-reasoning",
+    "expected_source": "Page 50"
+  },
+  {
+    "id": "q12",
+    "question": "Did the Americas segment net sales increase or decrease from 2024 to 2025, and by what percentage?",
+    "ground_truth_answer": "It increased by 7%.",
+    "category": "table-reasoning",
+    "expected_source": "Page 25"
+  },
+  {
+    "id": "q13",
+    "question": "What were the total consolidated net sales across all segments in 2025?",
+    "ground_truth_answer": "$416,161 million",
+    "category": "table-reasoning",
+    "expected_source": "Page 50"
+  },
+  {
+    "id": "q14",
+    "question": "How much did Apple's foreign pretax earnings increase from 2023 to 2025?",
+    "ground_truth_answer": "They increased by $9.1 billion (from $72.9 billion in 2023 to $82.0 billion in 2025).",
+    "category": "table-reasoning",
+    "expected_source": "Page 43"
+  },
+  {
+    "id": "q15",
+    "question": "Compare the net sales of Greater China in 2024 and 2025.",
+    "ground_truth_answer": "Net sales in Greater China decreased from $66,952 million in 2024 to $64,377 million in 2025.",
+    "category": "table-reasoning",
+    "expected_source": "Page 50"
+  },
+  {
+    "id": "q16",
+    "question": "Who leads Apple's Information Security team and what reportable segment generated the most net sales in 2025 to potentially protect?",
+    "ground_truth_answer": "The Head of Corporate Information Security leads the team. The Americas segment generated the most net sales in 2025 with $178,353 million.",
+    "category": "multi-hop",
+    "expected_source": "Page 20, Page 50"
+  },
+  {
+    "id": "q17",
+    "question": "On what date was the DOJ lawsuit filed regarding smartphones, and what was the percentage change in the Americas segment's net sales in the following fiscal year (2025)?",
+    "ground_truth_answer": "The DOJ lawsuit was filed on March 21, 2024. The Americas segment net sales increased by 7% in 2025 compared to 2024.",
+    "category": "multi-hop",
+    "expected_source": "Page 21, Page 25"
+  },
+  {
+    "id": "q18",
+    "question": "How much did Apple record for lease costs associated with variable payments in 2025, and what were the total net sales in Europe that same year?",
+    "ground_truth_answer": "Variable lease costs were $16.1 billion, and net sales in Europe were $111,032 million.",
+    "category": "multi-hop",
+    "expected_source": "Page 45, Page 50"
+  },
+  {
+    "id": "q19",
+    "question": "What was the total vesting-date fair value of RSUs in 2025, and how does it compare to the foreign pretax earnings in 2025?",
+    "ground_truth_answer": "The total vesting-date fair value of RSUs was $17.1 billion, while foreign pretax earnings were $82.0 billion.",
+    "category": "multi-hop",
+    "expected_source": "Page 48, Page 43"
+  },
+  {
+    "id": "q20",
+    "question": "Which segment is the second largest by net sales in 2025, and what is the nature of Apple's primary foreign exchange rate risk?",
+    "ground_truth_answer": "The second largest segment by net sales is Europe ($111,032 million). The primary foreign exchange rate risk is that Apple is a net receiver of currencies other than the U.S. dollar, so a strengthening U.S. dollar negatively impacts them.",
+    "category": "multi-hop",
+    "expected_source": "Page 50, Page 30"
+  }
+]

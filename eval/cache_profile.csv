@@ -1,0 +1,41 @@
+query,type,cache_hit,cache_distance,lookup_latency,retrieval_latency,generation_latency,total_latency,total_tokens
+What were Apple's total net sales in the Americas segment for 2025?,Novel,False,,12.750625610351562,1195.8625316619873,115.86427688598633,1324.4774341583252,0
+What were Apple's total net sales in the Europe segment for 2025?,Novel,False,,9.290456771850586,1572.4751949310303,653.599739074707,2264.7864818573,1350
+What were Apple's total net sales in Greater China for 2024?,Novel,False,0.203010678291,19.13762092590332,1463.6640548706055,94.95210647583008,1577.7537822723389,0
+When was the DOJ antitrust lawsuit filed against Apple?,Novel,False,0.441881000996,8.893489837646484,1205.66987991333,126.46985054016113,1341.0332202911377,0
+What was the total vesting-date fair value of RSUs for Apple in 2025?,Novel,False,0.274918913841,9.608745574951172,1435.7125759124756,98.89531135559082,1544.2166328430176,0
+What are some of the supply chain and component procurement risks Apple faces according to the 2025 10-K?,Novel,False,0.305256068707,9.867429733276367,1412.4171733856201,94.75874900817871,1517.0433521270752,0
+How does Apple distribute its products?,Novel,False,0.425466656685,6.590366363525391,1025.3095626831055,129.6670436859131,1161.566972732544,0
+Describe the DOJ antitrust lawsuit filed against Apple in 2024.,Novel,False,0.389366090298,7.619619369506836,1037.5480651855469,102.86283493041992,1148.0305194854736,0
+What does Apple's Head of Corporate Information Security do?,Novel,False,0.50922948122,10.538101196289062,1511.448860168457,99.98965263366699,1621.976613998413,0
+What happens if Apple fails to manage changing workforce dynamics and nurture its culture?,Novel,False,0.451166987419,7.64918327331543,1165.0786399841309,92.71121025085449,1265.4390335083008,0
+What were Apple's total net sales in the Americas segment for 2025?,Exact Duplicate,True,0.0937321782112,7.568359375,0.0,0.0,7.568359375,0
+What were Apple's total net sales in the Europe segment for 2025?,Exact Duplicate,True,-1.19209289551e-07,10.529279708862305,0.0,0.0,10.529279708862305,0
+What were Apple's total net sales in Greater China for 2024?,Exact Duplicate,False,0.203010678291,8.129596710205078,1383.7826251983643,433.88891220092773,1825.801134109497,0
+When was the DOJ antitrust lawsuit filed against Apple?,Exact Duplicate,False,0.441881000996,7.136344909667969,1019.6559429168701,108.82711410522461,1135.6194019317627,0
+What was the total vesting-date fair value of RSUs for Apple in 2025?,Exact Duplicate,False,0.274918913841,8.631467819213867,1378.1557083129883,87.13769912719727,1473.9248752593994,0
+What are some of the supply chain and component procurement risks Apple faces according to the 2025 10-K?,Exact Duplicate,False,0.305256068707,11.110782623291016,1454.4589519500732,96.8790054321289,1562.4487400054932,0
+How does Apple distribute its products?,Exact Duplicate,False,0.425466656685,10.532855987548828,1331.50053024292,110.0313663482666,1452.0647525787354,0
+Describe the DOJ antitrust lawsuit filed against Apple in 2024.,Exact Duplicate,False,0.389366090298,10.45989990234375,1175.7750511169434,86.18617057800293,1272.42112159729,0
+What does Apple's Head of Corporate Information Security do?,Exact Duplicate,False,0.50922948122,9.471893310546875,1299.0849018096924,87.3565673828125,1395.9133625030518,0
+What happens if Apple fails to manage changing workforce dynamics and nurture its culture?,Exact Duplicate,False,0.451166987419,8.400678634643555,1194.960594177246,118.20673942565918,1321.5680122375488,0
+What was the total net sales for Americas in 2025?,Semantic Duplicate,False,0.230063736439,7.812976837158203,1342.1599864959717,357.799768447876,1707.7727317810059,0
+How much net sales did Europe have in 2025?,Semantic Duplicate,False,0.152722477913,7.695674896240234,1321.3188648223877,90.34299850463867,1419.3575382232666,0
+Tell me Greater China's total net sales for 2024.,Semantic Duplicate,False,0.334854483604,7.515668869018555,1271.233320236206,126.03354454040527,1404.7825336456299,0
+What date did DOJ file the antitrust lawsuit?,Semantic Duplicate,False,0.578951597214,6.512641906738281,1213.5224342346191,108.86669158935547,1328.901767730713,0
+"For 2025, what was the RSU vesting-date fair value?",Semantic Duplicate,False,0.435833334923,8.696317672729492,1188.1098747253418,97.61452674865723,1294.4207191467285,0
+List the supply chain risks mentioned in the 2025 10-K.,Semantic Duplicate,False,0.436619281769,6.531715393066406,1167.4847602844238,108.6733341217041,1282.6898097991943,0
+What channels does Apple use to distribute products?,Semantic Duplicate,False,0.435991406441,6.047964096069336,1145.8890438079834,102.76031494140625,1254.697322845459,0
+Summarize the 2024 DOJ antitrust lawsuit.,Semantic Duplicate,False,0.512907862663,7.788896560668945,1418.4811115264893,83.90998840332031,1510.1799964904785,0
+What are the responsibilities of the Head of Corporate Information Security?,Semantic Duplicate,False,0.657603383064,6.888628005981445,2039.6533012390137,103.20329666137695,2149.745225906372,0
+What are the consequences if Apple's culture and workforce dynamics fail?,Semantic Duplicate,False,0.409963846207,7.207155227661133,1062.258005142212,121.88506126403809,1191.3502216339111,0
+Which reportable segment had the lowest net sales in 2025?,Novel,False,0.305431008339,7.214784622192383,1221.8964099884033,96.91309928894043,1326.0242938995361,0
+"Did the Americas segment net sales increase or decrease from 2024 to 2025, and by what percentage?",Novel,False,0.27095490694,9.365558624267578,1269.4289684295654,97.99504280090332,1376.7895698547363,0
+What were the total consolidated net sales across all segments in 2025?,Novel,False,0.221141457558,7.078886032104492,1307.3461055755615,91.96186065673828,1406.3868522644043,0
+How much did Apple's foreign pretax earnings increase from 2023 to 2025?,Novel,False,0.255527377129,9.11569595336914,1412.945032119751,88.98329734802246,1511.0440254211426,0
+Compare the net sales of Greater China in 2024 and 2025.,Novel,False,0.338131964207,7.958889007568359,1343.2981967926025,106.86254501342773,1458.1196308135986,0
+Who leads Apple's Information Security team and what reportable segment generated the most net sales in 2025 to potentially protect?,Novel,False,0.253690063953,10.26296615600586,1536.3280773162842,672.7426052093506,2219.3336486816406,0
+"On what date was the DOJ lawsuit filed regarding smartphones, and what was the percentage change in the Americas segment's net sales in the following fiscal year (2025)?",Novel,False,0.323777198792,27.84252166748047,1149.7623920440674,143.5842514038086,1321.1891651153564,0
+"How much did Apple record for lease costs associated with variable payments in 2025, and what were the total net sales in Europe that same year?",Novel,False,0.197741031647,11.209249496459961,1176.454782485962,95.70670127868652,1283.3707332611084,0
+"What was the total vesting-date fair value of RSUs in 2025, and how does it compare to the foreign pretax earnings in 2025?",Novel,False,0.400789260864,11.579751968383789,1403.6831855773926,104.59089279174805,1519.8538303375244,0
+"Which segment is the second largest by net sales in 2025, and what is the nature of Apple's primary foreign exchange rate risk?",Novel,False,0.170243382454,10.447978973388672,1284.424066543579,98.71172904968262,1393.5837745666504,0

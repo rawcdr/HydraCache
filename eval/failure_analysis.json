@@ -1,0 +1,24 @@
+[
+  {
+    "question": "What were Apple's total net sales in the Americas segment for 2025?",
+    "category": "exact-lookup",
+    "classification": "Synthesis Failure (Rate Limit)",
+    "expected_answer": "$178,353 million",
+    "actual_answer": "Generation failed: LLM Generation failed with status code 429",
+    "attempted_fix": "Implemented ChatGroq level retry mechanism and enforced max_workers=1 on Ragas executor.",
+    "retrieved_chunks": [
+      "Segment Operating Performance\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n2025 Change 2024 Change 2023\nAmericas $ 178,353 7 % $ 167,045"
+    ]
+  },
+  {
+    "question": "What were Apple's total net sales in the Europe segment for 2025?",
+    "category": "exact-lookup",
+    "classification": "Synthesis Failure (Rate Limit)",
+    "expected_answer": "$111,032 million",
+    "actual_answer": "Generation failed: LLM Generation failed with status code 429",
+    "attempted_fix": "Throttle evaluation load using RunConfig.",
+    "retrieved_chunks": [
+      "The following tables show information by reportable segment for 2025, 2024 and 2023 (in millions):\n2025\nGreater Rest of\nAmericas Europe China Japan Asia Pacific Corporate Total\nNet sales $ 178,353 $ 111,032"
+    ]
+  }
+]

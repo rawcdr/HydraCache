@@ -124,3 +124,11 @@ scripts/test_cache.py
    ├── generate_answer(query, Top-5 context)
    └── SemanticCache.store(query, generated_answer)
 ```
+
+## Phase 4 (Evaluation with Incremental Saves)
+1. `eval/run_eval.py` loads the 20-question `test_set.json`.
+2. Script checks `eval/results.json` to identify previously evaluated IDs and skip them.
+3. For each missing question, it invokes the target system (Baseline or Optimized) to get the answer and context.
+4. A 1-item HuggingFace `Dataset` is built.
+5. `ragas.evaluate` is called with `RunConfig(max_workers=1)` and `raise_exceptions=False`.
+6. The result is serialized and incrementally saved to `eval/results.json`.

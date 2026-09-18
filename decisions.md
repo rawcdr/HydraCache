@@ -171,3 +171,14 @@ This file is a chronological engineering decision log.
 - Using standard `requests` keeps the environment lightweight while retaining full compatibility. 
 - Graceful degradation on API failure prevents permanently poisoning the cache with error messages.
 ### Phase: Phase 3 (Final Integration)
+
+## [2026-09-18 11:00]
+### Decision: Fix Evaluation Concurrency and Retries
+### Context: The Ragas evaluation (Phase 4) failed due to asyncio starvation and Groq rate limit (HTTP 429) errors caused by unbounded concurrent LLM queries.
+### Decision Made:
+- Refactored `run_eval.py` to evaluate queries incrementally in a `for` loop.
+- Configured `ragas.run_config.RunConfig(max_workers=1, max_retries=5, max_wait=60)`.
+- Set `ChatGroq(max_retries=5)`.
+- Bypassed Ragas exception raising (`raise_exceptions=False`) so failures insert `NaN` metrics without terminating the script.
+### Why: To safely serialize the LLM calls and honor free-tier token limitations, and to prevent losing evaluation progress.
+### Phase: Phase 4 (Evaluator Fix)

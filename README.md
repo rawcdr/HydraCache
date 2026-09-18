@@ -67,11 +67,35 @@ You can also run the basic test suite:
 pytest tests/
 ```
 
+## Requirements
+Ensure you have a `.env` file in the root with:
+```
+QDRANT_URL=http://localhost:6333
+REDIS_URL=redis://localhost:6379/0
+GROQ_API_KEY=gsk_...
+```
+
+## Running the Application
+
+### Streamlit Dashboard
+You can run the Phase 4 UI dashboard to experiment with the system and view the evaluation analytics:
+```bash
+streamlit run app.py
+```
+
+### Automated Evaluation
+To re-run the Ragas benchmarking and cache profiling:
+```bash
+# Set PYTHONPATH if needed depending on your shell
+python eval/run_eval.py
+python eval/run_cache_profile.py
+```
+
 ## Planned Phase Roadmap
 - **[x] Phase 0**: Project Foundation & Environment Setup (Implemented)
 - **[x] Phase 1**: Parsing, Chunking, BM25 + Qdrant Indexing (Implemented)
 - **[x] Phase 2**: Hybrid Retrieval + RRF + Cross-Encoder Reranking (Implemented)
 - **[x] Phase 3**: Semantic Caching (Implemented)
-- **[ ] Phase 4**: Evaluation + Benchmarking + Failure Analysis + Streamlit (Planned)
+- **[x] Phase 4**: Evaluation + Benchmarking + Failure Analysis + Streamlit (Implemented)
 - **[ ] Phase 5**: Production API + Auth + Rate Limiting + Observability (Planned)
 - **[ ] Phase 6**: Multi-document + Multi-hop Retrieval (Planned)
