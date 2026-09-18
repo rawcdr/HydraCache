@@ -1,7 +1,0 @@
-import os
-
-with open("decisions.md", "a", encoding="utf-8") as f:
-    f.write("\n## [2026-09-18 11:00]\n### Decision: Fix Evaluation Concurrency and Retries\n### Context: The Ragas evaluation (Phase 4) failed due to asyncio starvation and Groq rate limit (HTTP 429) errors caused by unbounded concurrent LLM queries.\n### Decision Made:\n- Refactored `run_eval.py` to evaluate queries incrementally in a `for` loop.\n- Configured `ragas.run_config.RunConfig(max_workers=1, max_retries=5, max_wait=60)`.\n- Set `ChatGroq(max_retries=5)`.\n- Bypassed Ragas exception raising (`raise_exceptions=False`) so failures insert `NaN` metrics without terminating the script.\n### Why: To safely serialize the LLM calls and honor free-tier token limitations, and to prevent losing evaluation progress.\n### Phase: Phase 4 (Evaluator Fix)\n")
-
-with open("flow.md", "a", encoding="utf-8") as f:
-    f.write("\n## Phase 4 (Evaluation with Incremental Saves)\n1. `eval/run_eval.py` loads the 20-question `test_set.json`.\n2. Script checks `eval/results.json` to identify previously evaluated IDs and skip them.\n3. For each missing question, it invokes the target system (Baseline or Optimized) to get the answer and context.\n4. A 1-item HuggingFace `Dataset` is built.\n5. `ragas.evaluate` is called with `RunConfig(max_workers=1)` and `raise_exceptions=False`.\n6. The result is serialized and incrementally saved to `eval/results.json`.\n")

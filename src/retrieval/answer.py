@@ -29,11 +29,33 @@ class AnswerResult:
 
 
 class AnswerPipeline:
+    """
+    The central orchestration layer for HydraCache query processing.
+    
+    This pipeline manages the complete lifecycle of a query:
+    1. Semantic Cache Lookup
+    2. Query Classification & Decomposition (Multi-Hop)
+    3. Parallel Sparse/Dense Retrieval
+    4. Evidence Merging & Deduplication (for Multi-Hop)
+    5. Cross-Encoder Reranking
+    6. LLM Synthesis
+    7. Cache Storage
+    """
     def __init__(self, pipeline: Optional[PipelineRetriever] = None, cache: Optional[SemanticCache] = None):
         self.pipeline = pipeline or PipelineRetriever()
         self.cache = cache or SemanticCache()
         
     def answer(self, query: str) -> AnswerResult:
+        """
+        Processes a query through the full HydraCache pipeline.
+        
+        Args:
+            query (str): The natural language query from the user.
+            
+        Returns:
+            AnswerResult: A comprehensive object containing the synthesized answer, 
+                          latency telemetry, token usage, query mode, and citations.
+        """
         logger.info(f"Answering query: '{query}'")
         start_total = time.time()
         

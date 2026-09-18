@@ -219,3 +219,16 @@ This file is a chronological engineering decision log.
 6. **Final Evidence Selection**: The combined evidence pool is re-reranked via Cross-Encoder against the original user query to yield the final Top-7 chunks.
 7. **Conflict Handling**: The generation prompt explicitly instructs the LLM to highlight discrepancies between documents instead of silently reconciling conflicting figures (e.g., restated financials).
 8. **Cache Behavior**: The Semantic Cache is keyed entirely on the original user query, preventing fragmented sub-question caching.
+
+## [2026-09-18 17:38]
+### Decision: Final Repository Polish and Documentation Cleanup
+### Context: Following the completion of all 6 implementation phases, the repository needed a professional polish for presentation, technical demonstrations, and interviews.
+### Decision Made:
+- Completely rewrote `README.md` to generalize the architecture beyond the Apple 10-K demo corpus, framing it as an enterprise-grade document intelligence platform. Added architecture diagrams and explicitly documented the Phase 4 Ragas evaluation limit to preserve engineering integrity.
+- Removed unused and temporary directories (`models/`, `notebooks/`, `docs/`, `scratch/`).
+- Removed outdated phase-specific testing scripts (`scripts/test_*.py`) in favor of the formalized `tests/` directory. Kept `scripts/verify_*.py` as useful examples of architectural verification.
+- Updated `.gitignore` to prevent committing secrets (`*.key`, `*.pem`), IDE configs, and generated logs, while explicitly preserving `data/raw/` to ensure the Apple 10-K demo corpus remains in the repository.
+- Added comprehensive docstrings to `src/retrieval/answer.py` and `src/ingestion/parser.py` explaining the *why* of the architecture rather than just the *how*.
+### Why: 
+- To ensure the repository is clean, professional, and reflects the true capabilities and limitations of the system without fabrication or dead code.
+### Phase: Final Polish

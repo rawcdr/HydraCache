@@ -7,14 +7,26 @@ from langchain_core.documents import Document
 logger = logging.getLogger(__name__)
 
 class PDFParser:
+    """
+    Handles the structural extraction of text and tables from raw PDF documents.
+    
+    Rather than naively extracting all text, this parser identifies visual tables 
+    via bounding boxes, extracts them explicitly, and formats them as Markdown. 
+    It then extracts the remaining narrative text, ensuring that tables are not 
+    corrupted or split arbitrarily.
+    """
     def __init__(self, file_path: str, document_id: str = None):
         self.file_path = file_path
+        # Use provided ID or fallback to the filename without extension
         self.document_id = document_id or os.path.basename(file_path).split('.')[0]
 
     def parse(self) -> List[Document]:
         """
         Extract tables and narrative text from the PDF using pdfplumber.
-        Yields Document objects classified as 'table' or 'text'.
+        
+        Returns:
+            List[Document]: A list of LangChain Document objects, classified 
+                            as 'table' or 'text' via their metadata.
         """
         logger.info(f"Parsing PDF from {self.file_path} for Tables and Text...")
         docs = []
