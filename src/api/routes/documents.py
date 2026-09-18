@@ -33,7 +33,7 @@ def run_ingestion_pipeline(job_id: str, file_path: str):
         from src.indexing.dense import DenseIndexer
         from src.indexing.sparse import SparseIndexer
         
-        parser = PDFParser(file_path)
+        parser = PDFParser(file_path, document_id=job_id)
         docs = parser.parse()
         
         chunker = TextChunker()

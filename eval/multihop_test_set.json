@@ -1,0 +1,137 @@
+[
+    {
+        "id": "mh-001",
+        "question": "How did Apple's R&D expense change from 2023 to 2024?",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-002",
+        "question": "What was the difference in net income between 2024 and 2023?",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-003",
+        "question": "Are there any discrepancies regarding the 2023 net sales figures between the 2023 and 2024 filings?",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-004",
+        "question": "What factors did management cite regarding the net sales of 2023 in the 2024 report?",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-005",
+        "question": "Compare Apple's net sales in 2023 versus 2024.",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-006",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 6)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-007",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 7)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-008",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 8)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-009",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 9)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-010",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 10)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-011",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 11)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-012",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 12)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-013",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 13)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-014",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 14)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    },
+    {
+        "id": "mh-015",
+        "question": "Did Apple's R&D expense increase or decrease between 2023 and 2024? (Variation 15)",
+        "expected_documents": [
+            "apple_10k_2023",
+            "apple_10k_2024"
+        ],
+        "category": "multi_hop"
+    }
+]

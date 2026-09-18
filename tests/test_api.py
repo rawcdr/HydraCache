@@ -41,6 +41,8 @@ def mock_pipeline(monkeypatch):
         completion_tokens = 10
         total_tokens = 60
         context = []
+        query_mode = "single_hop"
+        sub_questions = []
 
     class MockPipeline:
         def answer(self, query: str):

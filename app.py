@@ -39,7 +39,8 @@ def render_search():
                 if res.context:
                     st.subheader("Retrieved Context")
                     for i, chunk in enumerate(res.context):
-                        with st.expander(f"Chunk {i+1} - Page {chunk.page_number} (Score: {chunk.score:.2f})"):
+                        doc_id = getattr(chunk, 'document_id', None) or chunk.source_file.split('/')[-1]
+                        with st.expander(f"Chunk {i+1} - Doc: {doc_id} | Page: {chunk.page_number} (Score: {chunk.score:.2f})"):
                             st.write(chunk.text)
                             st.caption(f"Section: {chunk.parent_id}")
                             
@@ -48,6 +49,13 @@ def render_search():
                 st.metric("Cache Status", "HIT" if res.cache_hit else "MISS")
                 if res.cache_distance is not None:
                     st.metric("Cache Distance", f"{res.cache_distance:.4f}")
+                    
+                st.write("### Query Mode")
+                st.write(f"`{res.query_mode}`")
+                if getattr(res, 'sub_questions', None):
+                    st.write("**Sub-questions:**")
+                    for sq in res.sub_questions:
+                        st.write(f"- {sq}")
                     
                 st.write("### Latency (ms)")
                 st.write(f"- Cache Lookup: {res.cache_latency:.2f}")

@@ -1,3 +1,4 @@
+import os
 import logging
 import pdfplumber
 from typing import List
@@ -6,8 +7,9 @@ from langchain_core.documents import Document
 logger = logging.getLogger(__name__)
 
 class PDFParser:
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str, document_id: str = None):
         self.file_path = file_path
+        self.document_id = document_id or os.path.basename(file_path).split('.')[0]
 
     def parse(self) -> List[Document]:
         """
@@ -38,6 +40,7 @@ class PDFParser:
                         doc = Document(
                             page_content=md_table,
                             metadata={
+                                "document_id": self.document_id,
                                 "source_file": self.file_path,
                                 "page_number": page_number,
                                 "chunk_type": "table",
@@ -59,6 +62,7 @@ class PDFParser:
                     doc = Document(
                         page_content=text.strip(),
                         metadata={
+                            "document_id": self.document_id,
                             "source_file": self.file_path,
                             "page_number": page_number,
                             "chunk_type": "text",

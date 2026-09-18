@@ -7,6 +7,8 @@ from src.retrieval.pipeline import PipelineRetriever
 from src.cache.semantic_cache import SemanticCache
 from src.generation.synthesize import generate_answer
 
+from src.generation.decompose import analyze_query
+
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -22,6 +24,8 @@ class AnswerResult:
     completion_tokens: int = 0
     total_tokens: int = 0
     context: Optional[List[RetrievalResult]] = None
+    query_mode: str = "single_hop"
+    sub_questions: List[str] = None
 
 
 class AnswerPipeline:
@@ -47,21 +51,47 @@ class AnswerPipeline:
                 retrieval_latency=0.0,
                 generation_latency=0.0,
                 total_latency=(time.time() - start_total) * 1000,
-                context=[] # Context was already baked into the answer
+                context=[], # Context was already baked into the answer
+                query_mode="single_hop",
+                sub_questions=[]
             )
             
-        # 2. Phase 2 Retrieval (Cache Miss)
+        # 2. Phase 6 Multi-hop Detection
+        plan = analyze_query(query)
+        
+        # 3. Retrieval
         start_retrieval = time.time()
-        context = self.pipeline.retrieve(query)
+        
+        if plan.mode == "single_hop" or not plan.sub_questions:
+            context = self.pipeline.retrieve(query)
+        else:
+            logger.info(f"Executing multi-hop retrieval for {len(plan.sub_questions)} sub-questions.")
+            combined_context = []
+            seen_chunk_ids = set()
+            
+            for sub_q in plan.sub_questions:
+                sub_ctx = self.pipeline.retrieve(sub_q)
+                for chunk in sub_ctx:
+                    if chunk.chunk_id not in seen_chunk_ids:
+                        seen_chunk_ids.add(chunk.chunk_id)
+                        combined_context.append(chunk)
+                        
+            # Final Reranking of combined evidence pool against the original query
+            # We take Top-7 to provide more context for multi-hop synthesis
+            if self.pipeline.reranker and combined_context:
+                context = self.pipeline.reranker.rerank(query, combined_context, top_k=7)
+            else:
+                context = combined_context[:7]
+                
         retrieval_latency = (time.time() - start_retrieval) * 1000
         
-        # 3. Answer Generation
+        # 4. Answer Generation
         start_gen = time.time()
         try:
             gen_result = generate_answer(query, context)
             generation_latency = (time.time() - start_gen) * 1000
             
-            # 4. Cache the successful result
+            # 5. Cache the successful result with original query as key
             self.cache.store(query, gen_result["answer"])
             
             return AnswerResult(
@@ -75,7 +105,9 @@ class AnswerPipeline:
                 prompt_tokens=gen_result["prompt_tokens"],
                 completion_tokens=gen_result["completion_tokens"],
                 total_tokens=gen_result["total_tokens"],
-                context=context
+                context=context,
+                query_mode=plan.mode,
+                sub_questions=plan.sub_questions
             )
             
         except Exception as e:
@@ -90,5 +122,7 @@ class AnswerPipeline:
                 retrieval_latency=retrieval_latency,
                 generation_latency=generation_latency,
                 total_latency=(time.time() - start_total) * 1000,
-                context=context
+                context=context,
+                query_mode=plan.mode,
+                sub_questions=plan.sub_questions
             )

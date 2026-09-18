@@ -22,12 +22,31 @@ class SparseIndexer:
         """
         Creates a BM25 index from the documents and saves it to disk.
         """
-        logger.info(f"Building BM25 sparse index for {len(chunks)} chunks...")
-        self.chunks = chunks
-        tokenized_corpus = [self.tokenize(chunk.page_content) for chunk in chunks]
+        logger.info(f"Building/Updating BM25 sparse index with {len(chunks)} new chunks...")
+        
+        all_chunks = chunks
+        if os.path.exists(self.save_path):
+            try:
+                with open(self.save_path, 'rb') as f:
+                    data = pickle.load(f)
+                    if 'chunks' in data:
+                        existing_chunks = data['chunks']
+                        logger.info(f"Loaded {len(existing_chunks)} existing chunks from {self.save_path}")
+                        # Filter out existing chunks that might have the same document_id if we wanted to replace them.
+                        # For Phase 6, we'll just append for simplicity or assume different docs.
+                        # Wait, we should probably check if chunks exist by chunk_id, but the simplest approach is just append.
+                        # Wait, a safer approach is to deduplicate by chunk_id.
+                        existing_chunk_ids = {c.metadata.get("chunk_id") for c in existing_chunks}
+                        new_chunks = [c for c in chunks if c.metadata.get("chunk_id") not in existing_chunk_ids]
+                        all_chunks = existing_chunks + new_chunks
+            except Exception as e:
+                logger.error(f"Failed to load existing BM25 index: {e}. Rebuilding from scratch.")
+
+        self.chunks = all_chunks
+        tokenized_corpus = [self.tokenize(chunk.page_content) for chunk in self.chunks]
         
         self.bm25 = BM25Okapi(tokenized_corpus)
-        logger.info("BM25 index built successfully.")
+        logger.info(f"BM25 index built successfully with {len(self.chunks)} total chunks.")
         self.save()
 
     def save(self):

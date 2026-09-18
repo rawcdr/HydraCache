@@ -183,3 +183,20 @@ HTTP GET /documents/{job_id}
    -> lookup in memory job_registry
    -> format response (Pydantic JobStatusResponse)
 ```
+
+## Phase 6 Multi-Hop Execution Flow
+```mermaid
+graph TD
+    A[User Query] --> B(Semantic Cache Lookup)
+    B -- Hit --> C[Return Cached Answer]
+    B -- Miss --> D(analyze_query)
+    D -- single_hop --> E(pipeline.retrieve)
+    D -- multi_hop --> F(Decompose into sub-questions)
+    F --> G(pipeline.retrieve for each sub-question)
+    G --> H(Merge and Deduplicate Evidence)
+    H --> I(reranker.rerank combined pool)
+    I --> J(generate_answer)
+    E --> J
+    J --> K(Cache Store)
+    K --> L[Return AnswerResult]
+```

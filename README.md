@@ -166,3 +166,6 @@ All requests emit structured JSON logs. The raw API key is explicitly excluded f
 - **[x] Phase 4**: Evaluation + Benchmarking + Failure Analysis + Streamlit (Implemented)
 - **[ ] Phase 5**: Production API + Auth + Rate Limiting + Observability (Planned)
 - **[ ] Phase 6**: Multi-document + Multi-hop Retrieval (Planned)
+
+## Phase 6: Multi-Document + Multi-Hop Retrieval
+HydraCache supports multi-document reasoning via query decomposition and cross-document evidence merging. Queries comparing data points across time periods (e.g., Apple 10-K 2024 vs 2023) are automatically routed to a multi-hop retrieval pipeline. Discrepancies and restated figures are surfaced securely in the final synthesis rather than hallucinated or reconciled silently.

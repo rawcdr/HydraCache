@@ -27,10 +27,8 @@ class DenseIndexer:
         metadata = [chunk.metadata for chunk in chunks]
         ids = [chunk.metadata.get("chunk_id") for chunk in chunks]
         
-        # Clear existing collection for clean state
-        if self.client.collection_exists(self.collection_name):
-            logger.info(f"Deleting existing collection '{self.collection_name}'...")
-            self.client.delete_collection(self.collection_name)
+        # We no longer delete the existing collection for a clean state in Phase 6.
+        # This allows multiple documents to coexist in the same index.
             
         # client.add generates embeddings natively using FastEmbed and handles collection creation
         self.client.add(

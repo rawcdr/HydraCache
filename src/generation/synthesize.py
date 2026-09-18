@@ -28,10 +28,13 @@ def generate_answer(query: str, retrieved_chunks: List[RetrievalResult]) -> Dict
     # Construct grounded context
     context_parts = []
     for chunk in retrieved_chunks:
+        doc_id = getattr(chunk, 'document_id', None)
+        if not doc_id:
+            doc_id = chunk.source_file.split('/')[-1]
         page = chunk.page_number or 'Unknown'
         section = chunk.parent_id or 'Unknown'
         text = chunk.text
-        context_parts.append(f"--- [Page: {page}, Section: {section}] ---\n{text}")
+        context_parts.append(f"--- [Document: {doc_id}, Page: {page}, Section: {section}] ---\n{text}")
         
     context_str = "\n\n".join(context_parts)
     
@@ -39,8 +42,9 @@ def generate_answer(query: str, retrieved_chunks: List[RetrievalResult]) -> Dict
         "You are a strict financial analyst AI. Answer the user's question using ONLY the provided context.\n"
         "1. Do not invent financial figures or facts.\n"
         "2. Explicitly state if the context is insufficient to answer the question.\n"
-        "3. Cite the relevant page or section metadata in your answer.\n"
-        "4. Prefer exact values from source tables when available."
+        "3. Cite the relevant Document and Page/Section metadata in your answer.\n"
+        "4. Prefer exact values from source tables when available.\n"
+        "5. IMPORTANT: Identify discrepancies between documents (e.g. restated figures, different years). Do not silently reconcile conflicting numbers. Surface the conflict and explain which document provided each number."
     )
     
     user_prompt = f"Context:\n{context_str}\n\nQuestion: {query}"

@@ -32,6 +32,8 @@ class QueryResponse(BaseModel):
     answer: str
     cache_hit: bool
     cache_distance: Optional[float] = None
+    query_mode: str = "single_hop"
+    sub_questions: List[str] = Field(default_factory=list)
     latency: LatencyBreakdown
     tokens: TokenUsage
     context: Optional[List[Citation]] = None

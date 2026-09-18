@@ -9,6 +9,7 @@ class RetrievalResult:
     source_file: str
     page_number: int
     chunk_type: str
+    document_id: Optional[str] = None
     parent_id: Optional[str] = None
     retrieval_source: str = "unknown"
     provenance: Optional[List[str]] = None

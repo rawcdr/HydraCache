@@ -209,3 +209,13 @@ This file is a chronological engineering decision log.
 ### Why:
 - Avoids over-engineering (no Celery/Redis required for the job queue right now). State is ephemeral and lost on restart, but satisfies Phase 5 constraints to keep infrastructure lightweight while still being non-blocking.
 ### Phase: Phase 5
+
+## Phase 6: Multi-Document + Multi-Hop Retrieval
+1. **Corpus Choice**: Apple 10-K filings for 2024 and 2023 were added to enable cross-year queries while testing multi-document reasoning.
+2. **Document Identity**: A `document_id` metadata field was introduced in the `PDFParser` and propagated through chunking, indexing, and synthesis to ensure citation provenance.
+3. **Multi-Hop Detection**: A lightweight LLM classification step (`src.generation.decompose.analyze_query`) runs before retrieval to determine if a query is `single_hop` or `multi_hop`.
+4. **Query Decomposition**: If `multi_hop`, the LLM structures the user intent into multiple deterministic sub-questions to ensure high coverage of distinct topics/years.
+5. **Sub-Question Retrieval & Evidence Merging**: Each sub-question retrieves context via the Phase 2 pipeline. The results are merged and deduplicated by `chunk_id`.
+6. **Final Evidence Selection**: The combined evidence pool is re-reranked via Cross-Encoder against the original user query to yield the final Top-7 chunks.
+7. **Conflict Handling**: The generation prompt explicitly instructs the LLM to highlight discrepancies between documents instead of silently reconciling conflicting figures (e.g., restated financials).
+8. **Cache Behavior**: The Semantic Cache is keyed entirely on the original user query, preventing fragmented sub-question caching.

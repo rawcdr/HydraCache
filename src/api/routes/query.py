@@ -41,6 +41,8 @@ async def query_endpoint(
         extra={
             "query_hash": query_hash,
             "cache_hit": result.cache_hit,
+            "query_mode": result.query_mode,
+            "num_sub_questions": len(result.sub_questions) if result.sub_questions else 0,
             "latency": result.total_latency
         }
     )
@@ -67,6 +69,8 @@ async def query_endpoint(
         answer=result.answer,
         cache_hit=result.cache_hit,
         cache_distance=result.cache_distance,
+        query_mode=result.query_mode,
+        sub_questions=result.sub_questions or [],
         latency=LatencyBreakdown(
             cache_latency=result.cache_latency,
             retrieval_latency=result.retrieval_latency,

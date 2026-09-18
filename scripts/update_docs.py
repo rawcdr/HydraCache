@@ -1,0 +1,32 @@
+with open("decisions.md", "a", encoding="utf-8") as f:
+    f.write("\n## Phase 6: Multi-Document + Multi-Hop Retrieval\n")
+    f.write("1. **Corpus Choice**: Apple 10-K filings for 2024 and 2023 were added to enable cross-year queries while testing multi-document reasoning.\n")
+    f.write("2. **Document Identity**: A `document_id` metadata field was introduced in the `PDFParser` and propagated through chunking, indexing, and synthesis to ensure citation provenance.\n")
+    f.write("3. **Multi-Hop Detection**: A lightweight LLM classification step (`src.generation.decompose.analyze_query`) runs before retrieval to determine if a query is `single_hop` or `multi_hop`.\n")
+    f.write("4. **Query Decomposition**: If `multi_hop`, the LLM structures the user intent into multiple deterministic sub-questions to ensure high coverage of distinct topics/years.\n")
+    f.write("5. **Sub-Question Retrieval & Evidence Merging**: Each sub-question retrieves context via the Phase 2 pipeline. The results are merged and deduplicated by `chunk_id`.\n")
+    f.write("6. **Final Evidence Selection**: The combined evidence pool is re-reranked via Cross-Encoder against the original user query to yield the final Top-7 chunks.\n")
+    f.write("7. **Conflict Handling**: The generation prompt explicitly instructs the LLM to highlight discrepancies between documents instead of silently reconciling conflicting figures (e.g., restated financials).\n")
+    f.write("8. **Cache Behavior**: The Semantic Cache is keyed entirely on the original user query, preventing fragmented sub-question caching.\n")
+
+with open("flow.md", "a", encoding="utf-8") as f:
+    f.write("\n## Phase 6 Multi-Hop Execution Flow\n")
+    f.write("```mermaid\n")
+    f.write("graph TD\n")
+    f.write("    A[User Query] --> B(Semantic Cache Lookup)\n")
+    f.write("    B -- Hit --> C[Return Cached Answer]\n")
+    f.write("    B -- Miss --> D(analyze_query)\n")
+    f.write("    D -- single_hop --> E(pipeline.retrieve)\n")
+    f.write("    D -- multi_hop --> F(Decompose into sub-questions)\n")
+    f.write("    F --> G(pipeline.retrieve for each sub-question)\n")
+    f.write("    G --> H(Merge and Deduplicate Evidence)\n")
+    f.write("    H --> I(reranker.rerank combined pool)\n")
+    f.write("    I --> J(generate_answer)\n")
+    f.write("    E --> J\n")
+    f.write("    J --> K(Cache Store)\n")
+    f.write("    K --> L[Return AnswerResult]\n")
+    f.write("```\n")
+
+with open("README.md", "a", encoding="utf-8") as f:
+    f.write("\n## Phase 6: Multi-Document + Multi-Hop Retrieval\n")
+    f.write("HydraCache supports multi-document reasoning via query decomposition and cross-document evidence merging. Queries comparing data points across time periods (e.g., Apple 10-K 2024 vs 2023) are automatically routed to a multi-hop retrieval pipeline. Discrepancies and restated figures are surfaced securely in the final synthesis rather than hallucinated or reconciled silently.\n")
