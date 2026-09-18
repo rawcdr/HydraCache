@@ -105,8 +105,8 @@ scripts/test_pipeline.py
 2. `SemanticCache.lookup()` embeds the query (`bge-small-en-v1.5`) and queries the Redis vector index.
 3. If the nearest cached query has a Cosine distance `< 0.15`, the cache yields a HIT and returns the cached answer instantly.
 4. If MISS, the query falls through to `PipelineRetriever.retrieve()` (Phase 2 flow).
-5. The `generate_answer()` stub produces a final answer.
-6. The answer is cached via `SemanticCache.store()` with a 24-hour TTL.
+5. `generate_answer()` uses Groq (`openai/gpt-oss-20b`) to synthesize an answer grounded strictly in the Top-5 retrieved chunks.
+6. The answer is cached via `SemanticCache.store()` with a 24-hour TTL (only if generation succeeds).
 
 ### Function Call Chain
 ```text

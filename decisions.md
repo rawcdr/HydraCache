@@ -157,3 +157,17 @@ This file is a chronological engineering decision log.
 - A fail-open approach was chosen for Redis connection failures, allowing the architecture to seamlessly degrade back to standard Phase 2 retrieval.
 ### Impact: Exact and Semantic duplicates successfully bypass the entire retrieval pipeline, dropping latency from ~1,500ms down to ~10-50ms.
 ### Phase: Phase 3
+
+## [2026-09-18 09:47]
+### Decision: Implement LLM Generation via Groq `openai/gpt-oss-20b`.
+### Context: Phase 3 requires replacing the generation stub with actual LLM synthesis grounded in the retrieved chunks. 
+### Decision Made: 
+- Selected Groq as the LLM provider due to ultra-low latency, and `openai/gpt-oss-20b` as explicitly instructed.
+- Integrated using the `requests` library targeting Groq's OpenAI-compatible endpoint to avoid bloating the dependency tree with a full OpenAI SDK.
+- Configured a strict grounding prompt instructing the LLM to only use provided context, avoid hallucinations, and explicitly cite metadata (Page/Section).
+- Added token usage tracking (`prompt_tokens`, `completion_tokens`, `total_tokens`) to `AnswerResult` for downstream Phase 4 telemetry.
+- If generation fails (e.g., API timeout), the error is caught and a partial `AnswerResult` is returned without saving to the Semantic Cache.
+### Why: 
+- Using standard `requests` keeps the environment lightweight while retaining full compatibility. 
+- Graceful degradation on API failure prevents permanently poisoning the cache with error messages.
+### Phase: Phase 3 (Final Integration)

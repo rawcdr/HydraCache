@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from src.retrieval.models import RetrievalResult
 from src.retrieval.pipeline import PipelineRetriever
 from src.cache.semantic_cache import SemanticCache
+from src.generation.synthesize import generate_answer
 
 logger = logging.getLogger(__name__)
 
@@ -17,25 +18,11 @@ class AnswerResult:
     retrieval_latency: float = 0.0
     generation_latency: float = 0.0
     total_latency: float = 0.0
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    total_tokens: int = 0
     context: Optional[List[RetrievalResult]] = None
 
-def generate_answer(query: str, retrieved_chunks: List[RetrievalResult]) -> str:
-    """
-    A lightweight deterministic stub for LLM answer generation.
-    In a real implementation, this would call OpenAI/Anthropic etc.
-    """
-    if not retrieved_chunks:
-        return "I could not find an answer in the provided documents."
-        
-    # Generate a dummy answer that clearly shows it used the chunks
-    sources = []
-    for chunk in retrieved_chunks:
-        page = chunk.page_number or 'Unknown'
-        sources.append(f"[Page {page}]")
-        
-    source_str = ", ".join(sources)
-    answer = f"Based on the retrieved context {source_str}, this is a generated answer for: '{query}'."
-    return answer
 
 class AnswerPipeline:
     def __init__(self, pipeline: Optional[PipelineRetriever] = None, cache: Optional[SemanticCache] = None):
@@ -70,19 +57,38 @@ class AnswerPipeline:
         
         # 3. Answer Generation
         start_gen = time.time()
-        generated_text = generate_answer(query, context)
-        generation_latency = (time.time() - start_gen) * 1000
-        
-        # 4. Cache the successful result
-        self.cache.store(query, generated_text)
-        
-        return AnswerResult(
-            answer=generated_text,
-            cache_hit=False,
-            cache_distance=cache_res.distance, # If it was close but not enough, or None
-            cache_latency=cache_latency,
-            retrieval_latency=retrieval_latency,
-            generation_latency=generation_latency,
-            total_latency=(time.time() - start_total) * 1000,
-            context=context
-        )
+        try:
+            gen_result = generate_answer(query, context)
+            generation_latency = (time.time() - start_gen) * 1000
+            
+            # 4. Cache the successful result
+            self.cache.store(query, gen_result["answer"])
+            
+            return AnswerResult(
+                answer=gen_result["answer"],
+                cache_hit=False,
+                cache_distance=cache_res.distance,
+                cache_latency=cache_latency,
+                retrieval_latency=retrieval_latency,
+                generation_latency=generation_latency,
+                total_latency=(time.time() - start_total) * 1000,
+                prompt_tokens=gen_result["prompt_tokens"],
+                completion_tokens=gen_result["completion_tokens"],
+                total_tokens=gen_result["total_tokens"],
+                context=context
+            )
+            
+        except Exception as e:
+            logger.error(f"Generation failed: {e}")
+            generation_latency = (time.time() - start_gen) * 1000
+            # Do NOT cache failed requests
+            return AnswerResult(
+                answer=f"Generation failed: {e}",
+                cache_hit=False,
+                cache_distance=cache_res.distance,
+                cache_latency=cache_latency,
+                retrieval_latency=retrieval_latency,
+                generation_latency=generation_latency,
+                total_latency=(time.time() - start_total) * 1000,
+                context=context
+            )

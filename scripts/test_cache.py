@@ -14,11 +14,16 @@ def print_result(query_label: str, query: str, res):
     print(f"Retrieval Latency: {res.retrieval_latency:.2f} ms")
     print(f"Generation Latency: {res.generation_latency:.2f} ms")
     print(f"Total Latency: {res.total_latency:.2f} ms")
+    if res.total_tokens > 0:
+        print(f"Token Usage: Prompt={res.prompt_tokens}, Completion={res.completion_tokens}, Total={res.total_tokens}")
     print("-" * 50)
-    print(f"Answer: {res.answer[:150]}...")
+    print(f"Answer:\n{res.answer}\n")
     print("=" * 50)
 
 def main():
+    if sys.stdout.encoding.lower() != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8')
+
     print("==================================================")
     print("Phase 3 - Semantic Caching Live Test")
     print("==================================================")

@@ -95,7 +95,8 @@ def test_cache_clear(mock_embedding, mock_redis):
 
 # --- AnswerPipeline Orchestration Tests ---
 
-def test_pipeline_miss_path():
+@patch("src.retrieval.answer.generate_answer")
+def test_pipeline_miss_path(mock_generate):
     pipeline_mock = MagicMock()
     cache_mock = MagicMock()
     
@@ -103,11 +104,19 @@ def test_pipeline_miss_path():
     cache_mock.lookup.return_value = CacheResult(hit=False, distance=0.2)
     pipeline_mock.retrieve.return_value = [RetrievalResult(chunk_id="1", text="txt", score=1.0, source_file="x", page_number=1, chunk_type="txt")]
     
+    mock_generate.return_value = {
+        "answer": "Generated answer based on context.",
+        "prompt_tokens": 10,
+        "completion_tokens": 10,
+        "total_tokens": 20
+    }
+    
     answer_pipeline = AnswerPipeline(pipeline=pipeline_mock, cache=cache_mock)
     res = answer_pipeline.answer("new query")
     
     assert res.cache_hit is False
-    assert "Based on the retrieved context" in res.answer
+    assert res.answer == "Generated answer based on context."
+    assert res.total_tokens == 20
     pipeline_mock.retrieve.assert_called_once_with("new query")
     cache_mock.store.assert_called_once()
 
